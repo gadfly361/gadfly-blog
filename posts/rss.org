@@ -1,0 +1,7 @@
+* d3-in-reagent
+:PROPERTIES:
+:RSS_PERMALINK: 2016-10-22-d3-in-reagent.html
+:PUBDATE: <2016-10-22>
+:ID:       c6f3b5b2-de57-4753-b6a5-1c1bc6a37048
+:END:
+#+include: "~/gadfly/blog/posts/2016-10-22-d3-in-reagent.org" :lines "4-"

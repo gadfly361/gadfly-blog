@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-10-30 Sun 00:26 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>d3 in reagent</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="matthew" />
+<link rel="alternate" type="appliation/rss+xml"
+                href="https://gadfly361.github.io/gadfly-blog/rss.xml"
+                title="RSS feed for gadfly blog">
+          <link href= "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.css" rel="stylesheet" type="text/css" />
+          <link href= "static/style.css" rel="stylesheet" type="text/css" />
+
+         <link rel="stylesheet" href="static/highlight.css">
+
+
+          <title>Gadfly Blog</title>
+          <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
+          <meta name="viewport" content="initial-scale=1,width=device-width,minimum-scale=1" />
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="ui fluid borderless very compact menu inverted"
+               style="border-radius:0;">
+
+            <div class="ui container">
+              <a class="item"
+                 href="index.html">
+                 <h3 class="ui header inverted"
+                     style="margin:0;">
+                     gadfly
+                     <span style="color:green;">.</span>
+                     io</h3>
+              </a>
+
+              <div class="right menu">
+
+              <a class="item"
+                 href="posts.html">
+                 <h3 class="ui header inverted"
+                     style="margin:0;">posts</h3>
+              </a>
+
+              <a class="item"
+                 href="https://gadfly361.github.io/gadfly-blog/rss.xml"
+                 target="_blank">
+                <i class="rss icon inverted large"></i>
+              </a>
+
+              <a class="item"
+                 href="http://github.com/gadfly361"
+                 target="_blank">
+                <i class="github icon inverted large"></i>
+              </a>
+
+              <a class="item"
+                 href="https://twitter.com/gadfly361"
+                 target="_blank">
+                <i class="twitter icon inverted large"></i>
+              </a>
+              </div>
+            </div>
+          </div>
+</div>
+<div id="content">
+<h1 class="title">d3 in reagent</h1>
+<p>
+Published: <i>October 22, 2016</i>
+</p>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">Intro</h2>
+<div class="outline-text-2" id="text-orgheadline1">
+<ul class="org-ul">
+<li><a href="https://d3js.org/">d3</a> is an amazing visualization library written in javascript.</li>
+<li><a href="https://github.com/reagent-project/reagent">Reagent</a> is a clojurescript wrapper around facebook's <a href="https://facebook.github.io/react/">react</a>.</li>
+</ul>
+
+<p>
+<b>Goal</b>: Share an example of a dynamic barchart that showcases how to
+use d3's <a href="https://bl.ocks.org/mbostock/3808218">General Update Pattern</a> with reagent's <a href="https://github.com/Day8/re-frame/wiki/Creating-Reagent-Components#form-3-a-class-with-life-cycle-methods">form-3</a> component. Note,
+detailing how to use d3 itself is <b>not</b> a goal.
+</p>
+
+<p>
+<b>Intended Audience</b>: Intermediate clojurescript / d3 developers.
+</p>
+
+<p>
+<b><a href="https://gadfly361.github.io/gadfly-blog/demos/2016-10-22-d3-in-reagent/index.html">Demo</a></b>, <b><a href="https://github.com/gadfly361/gadfly-blog/tree/master/code/2016-10-22-d3-in-reagent">Source</a></b>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">Post</h2>
+<div class="outline-text-2" id="text-orgheadline2">
+<p>
+For this post, we are going to start with <a href="https://github.com/gadfly361/reagent-cookbook-template">reagent-cookbook-template</a>,
+which is useful for demonstration purposes. However, it is <b>not</b> a
+good template for development (I'd recommend <a href="https://github.com/gadfly361/reagent-figwheel">reagent-figwheel</a>
+or <a href="https://github.com/Day8/re-frame-template">re-frame-template</a> instead).
+</p>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><b>Step 1</b>: Create application</h3>
+<div class="outline-text-3" id="text-orgheadline3">
+<div class="org-src-container">
+
+<pre><code class="hljs shell">lein new rc d3-in-reagent
+</code></pre>
+</div>
+
+<p>
+You should see an output like this:
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="hljs shell">├── project.clj
+├── resources
+│   └── public
+│       └── index.html
+└── src
+    └── cljs
+	└── d3_in_reagent
+	    └── core.cljs
+</code></pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><b>Step 2</b>: Add d3 dependency to your project</h3>
+<div class="outline-text-3" id="text-orgheadline4">
+<p>
+There are <a href="https://github.com/lambdaisland/thirdpartyjs">several ways</a> to add d3 to your project; we are going to use <a href="https://github.com/cljsjs/packages">cljsjs</a>.
+Open <code>project.clj</code> and add d3 to the dependencies vector.
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="hljs clojure">:dependencies [[org.clojure/clojure "1.7.0"]
+	       [org.clojure/clojurescript "1.7.122"]
+	       [reagent "0.5.1"]
+	       [cljsjs/d3 "4.2.2-0"] ;; &lt;-- ATTENTION
+	       ]
+</code></pre>
+</div>
+
+<p>
+Open <code>core.cljs</code> and require d3.
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="hljs clojure">(ns d3-in-reagent.core
+  (:require
+   [reagent.core :as reagent]
+   [cljsjs.d3] ;; &lt;-- ATTENTION
+   ))
+</code></pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><b>Step 3</b>: Create SVG element</h3>
+<div class="outline-text-3" id="text-orgheadline5">
+<p>
+To make our barchart, we need to put an SVG element on our page.
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="hljs clojure">(defn viz []
+  [:div
+   {:id "barchart"}
+
+   [:svg
+    {:width  300
+     :height 240}]])
+
+
+(defn home []
+  [:div
+   [:h1 "Barchart"]
+   [viz]])
+</code></pre>
+</div>
+
+<p>
+At this point, run your application (<code>lein cljsbuild once prod</code>, and
+then open <code>resources/public/index.html</code>) to verify that you have an
+svg on the page. You should see:
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="hljs html">&lt;svg width="300" height="240" data-reactid=".0.1.0"&gt;&lt;/svg&gt;
+</code></pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><b>Step 4</b>: Make height and width dynamic</h3>
+<div class="outline-text-3" id="text-orgheadline6">
+<p>
+However, I do not like the statically defined height and width. From
+experience, I have found that creating functions to generate the
+height and width works well for making responsive visualizations.
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="hljs clojure">(defonce app-state
+  (reagent/atom
+   {:width 300}))
+
+
+(defn get-width [ratom]
+  (:width @ratom))
+
+(defn get-height [ratom]
+  (let [width (get-width ratom)]
+    (* 0.8 width)))
+
+
+(defn viz [ratom]
+  (let [width  (get-width ratom)
+	height (get-height ratom)]
+    [:div
+     {:id "barchart"}
+
+     [:svg
+      {:width  width
+       :height height}]]))
+</code></pre>
+</div>
+
+<p>
+We can test this out by creating a toggle-width button.
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="hljs clojure">(defn btn-toggle-width [ratom]
+  [:div
+   [:button
+    {:on-click #(swap! ratom update
+		       :width (fn [width]
+				(if (= 300 width) 500 300)))}
+    "Toggle width"]])
+
+(defn home []
+  [:div
+   [:h1 "Barchart"]
+   [btn-toggle-width app-state]
+   [viz app-state]
+   ])
+</code></pre>
+</div>
+
+<p>
+If you click the button, the svg should toggle between:
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="hljs html">&lt;svg width="300" height="240" data-reactid=".0.2.0"&gt;&lt;/svg&gt;
+</code></pre>
+</div>
+
+<div class="org-src-container">
+
+<pre><code class="hljs html">&lt;svg width="500" height="400" data-reactid=".0.2.0"&gt;&lt;/svg&gt;
+</code></pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><b>Step 5</b>: Create a containing 'g' element</h3>
+<div class="outline-text-3" id="text-orgheadline7">
+<p>
+Now that we have a dynamically sized svg element, let's add stuff to
+it! To start, we can add a simple <code>g</code> element to act as a container
+for other svg elements.
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="hljs shell">svg
+└── g.container
+</code></pre>
+</div>
+
+<p>
+<b>Pause</b>
+</p>
+
+<p>
+Ok, I lied. It isn't going to be all that simple. If you haven't done
+so, familiarize yourself with d3's <a href="https://bl.ocks.org/mbostock/3808218">General Update Pattern</a> and
+reagent's <a href="https://github.com/Day8/re-frame/wiki/Creating-Reagent-Components#form-3-a-class-with-life-cycle-methods">form-3</a> component.
+</p>
+
+<p>
+From the d3 world, we care about:
+</p>
+
+<ul class="org-ul">
+<li><code>enter -&gt; update -&gt; exit</code></li>
+</ul>
+
+<p>
+From the reagent/react world, we care about:
+</p>
+
+<ul class="org-ul">
+<li><code>reagent-render -&gt; component-did-mount -&gt; component-did-update</code></li>
+</ul>
+
+<p>
+Since we are working with two different worlds, I recommend enforcing
+a strict naming convention:
+</p>
+
+<ul class="org-ul">
+<li>d3 world: *-enter, *-update, *-exit</li>
+<li>reagent/react world: *-render, *-did-mount, *-did-update</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre><code class="hljs clojure">(defn container-enter [ratom]
+  (-&gt; (js/d3.select "#barchart svg")
+      (.append "g")
+      (.attr "class" "container")))
+
+(defn container-did-mount [ratom]
+  (container-enter ratom))
+</code></pre>
+</div>
+
+<div class="org-src-container">
+
+<pre><code class="hljs clojure">(defn viz-render [ratom]
+  (let [width  (get-width ratom)
+	height (get-height ratom)]
+    [:div
+     {:id "barchart"}
+
+     [:svg
+      {:width  width
+       :height height}]]))
+
+(defn viz-did-mount [ratom]
+  (container-did-mount ratom))
+
+(defn viz [ratom]
+  (reagent/create-class
+   {:reagent-render      #(viz-render ratom)
+    :component-did-mount #(viz-did-mount ratom)}))
+</code></pre>
+</div>
+
+<p>
+Let's recap the order of events between d3 and reagent.
+</p>
+
+<ol class="org-ol">
+<li><code>viz</code> component calls its render function, <code>viz-render</code>
+<ul class="org-ul">
+<li>places svg element on the DOM</li>
+</ul></li>
+<li><code>viz</code> component calls its did-mount function, <code>viz-did-mount</code>
+<ul class="org-ul">
+<li><code>viz-did-mount</code> calls <code>container-did-mount</code></li>
+<li><code>container-did-mount</code> calls <code>container-enter</code></li>
+<li><code>container-enter</code> grabs the svg element and appends a <code>g</code> element.</li>
+</ul></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><b>Step 6</b>: Add bars</h3>
+<div class="outline-text-3" id="text-orgheadline8">
+<p>
+Let's add some data that we can use to generate the bars in our chart.
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="hljs clojure">(defonce app-state
+  (reagent/atom
+   {:width 300
+    :data  [{:x 1}
+	    {:x 2}
+	    {:x 3}]}))
+
+(defn get-data [ratom]
+  (:data @ratom))
+</code></pre>
+</div>
+
+<p>
+Next, let's add the bars to our svg with the previously discussed
+naming convention. By the end, our svg structure will look like this.
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="hljs shell">svg
+└── g.container
+    └── g.bars
+	└── rect
+	└── rect
+	└── rect
+</code></pre>
+</div>
+
+<p>
+<i>Note: Since this is not a d3 tutorial, I am making the assumption
+that the d3 bits below make sense.</i>
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="hljs clojure">(defn bars-enter [ratom]
+  (let [data (get-data ratom)]
+    (-&gt; (js/d3.select "#barchart svg .container .bars")
+	(.selectAll "rect")
+	(.data (clj-&gt;js data))
+	.enter
+	(.append "rect"))))
+
+(defn bars-update [ratom]
+  (let [width   (get-width ratom)
+	height  (get-height ratom)
+	data    (get-data ratom)
+	data-n  (count data)
+	rect-height (/ height data-n)
+	x-scale (-&gt; js/d3
+		    .scaleLinear
+		    (.domain #js [0 5])
+		    (.range #js [0 width]))]
+    (-&gt; (js/d3.select "#barchart svg .container .bars")
+	(.selectAll "rect")
+	(.data (clj-&gt;js data))
+	(.attr "fill" "green")
+	(.attr "x" (x-scale 0))
+	(.attr "y" (fn [_ i]
+		     (* i rect-height)))
+	(.attr "height" (- rect-height 1))
+	(.attr "width" (fn [d]
+			 (x-scale (aget d "x")))))))
+
+(defn bars-exit [ratom]
+  (let [data (get-data ratom)]
+    (-&gt; (js/d3.select "#barchart svg .container .bars")
+	(.selectAll "rect")
+	(.data (clj-&gt;js data))
+	.exit
+	.remove)))
+
+
+(defn bars-did-update [ratom]
+  (bars-enter ratom)
+  (bars-update ratom)
+  (bars-exit ratom))
+
+(defn bars-did-mount [ratom]
+  (-&gt; (js/d3.select "#barchart svg .container")
+      (.append "g")
+      (.attr "class" "bars"))
+  (bars-did-update ratom))
+</code></pre>
+</div>
+
+<p>
+Hopefully, at this point the separation of the d3 world, and the
+reagent/react world is clear.
+</p>
+
+<p>
+d3 world:
+</p>
+
+<ul class="org-ul">
+<li>bars-enter</li>
+<li>bars-update</li>
+<li>bars-exit</li>
+</ul>
+
+<p>
+reagent/react world:
+</p>
+
+<ul class="org-ul">
+<li>bars-did-update</li>
+<li>bars-did-mount</li>
+</ul>
+
+<p>
+It should be noted that <code>bars-did-update</code> and <code>bars-did-mount</code> are
+<i>almost</i> the same. However, the difference is important to
+understand. <code>bars-did-mount</code> will only ever be called once, right
+after the component has mounted. <code>bars-did-update</code> will be called on
+every subsequent render of our component.  If we had placed the
+following:
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="hljs clojure">(-&gt; (js/d3.select "#barchart svg .container")
+    (.append "g")
+    (.attr "class" "bars"))
+</code></pre>
+</div>
+
+<p>
+inside of <code>bars-did-update</code>, we would have created a <b>new</b> <code>g</code> element
+every time the component updated &#x2026; eek!
+</p>
+
+
+<p>
+Now we can add the bars to our svg, as follows.
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="hljs clojure">(defn viz-did-mount [ratom]
+  ;; order matters here
+  (container-did-mount ratom)
+  (bars-did-mount ratom))
+
+(defn viz-did-update [ratom]
+  (bars-did-update ratom))
+
+(defn viz [ratom]
+  (reagent/create-class
+   {:reagent-render       #(viz-render ratom)
+    :component-did-mount  #(viz-did-mount ratom)
+    :component-did-update #(viz-did-update ratom)}))
+</code></pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><b>Step 7</b>: Make bars dynamic</h3>
+<div class="outline-text-3" id="text-orgheadline9">
+<p>
+We have actually already written the code to make the bars dynamic!
+However, to see it, let's add a button that will create random data.
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="hljs clojure">(defn randomize-data [ratom]
+  (let [points-n (max 2 (rand-int 8))
+	points   (range points-n)
+	create-x (fn [] (max 1 (rand-int 5)))]
+    (swap! ratom update :data
+	   (fn []
+	     (mapv #(hash-map :x (create-x))
+		   points)))))
+
+(defn btn-randomize-data [ratom]
+  [:div
+   [:button
+    {:on-click #(randomize-data ratom)}
+    "Randomize data"]])
+</code></pre>
+</div>
+
+<div class="org-src-container">
+
+<pre><code class="hljs clojure">(defn home []
+  [:div
+   [:h1 "Barchart"]
+   [btn-toggle-width app-state]
+   [btn-randomize-data app-state]
+   [viz app-state]
+   ])
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-2">
+<h2 id="orgheadline10">Thanks for Reading</h2>
+<div class="outline-text-2" id="text-orgheadline10">
+<p>
+<b><a href="https://gadfly361.github.io/gadfly-blog/demos/2016-10-22-d3-in-reagent/index.html">Demo</a></b>, <b><a href="https://github.com/gadfly361/gadfly-blog/tree/master/code/2016-10-22-d3-in-reagent">Source</a></b>
+</p>
+
+<p>
+If you have any questions, I can be reached in the #reagent channel of
+the <a href="http://clojurians.net/">clojurians</a> slack group.
+</p>
+
+
+- gadfly361 
+<a href="https://twitter.com/gadfly361">
+  <i class="twitter icon black large"></i>
+</a>
+<a href="https://github.com/gadfly361">
+  <i class="github icon black large"></i>
+</a>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<script type="text/javascript">
+		  var content = document.getElementById("content")
+		  content.className += "ui text container"
+		  </script>
+
+         <div class="ui text container">
+              <div class="ui divider"></div>
+
+              <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = '//gadfly-blog.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+                })();
+               </script>
+               <noscript>Please enable JavaScript to view the
+               <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+              <script src="static/highlight.js"></script>
+              <script>hljs.initHighlightingOnLoad();</script>
+
+         </div>
+</div>
+</body>
+</html>

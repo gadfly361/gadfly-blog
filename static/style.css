@@ -1,0 +1,32 @@
+#content {
+    margin-top: 16px;
+}
+
+#postamble {
+    margin-top: 16px;
+}
+
+#disqus_thread {
+    margin-top: 16px;
+}
+
+h1 {
+    color: #21BA45!important;
+}
+
+h2 {
+    margin-top: 24px !important;
+}
+
+.ui.menu .item {
+    padding-left:8px !important;
+    padding-right:8px !important;
+}
+
+.ui.menu .item>i.icon {
+    margin-right:0px !important;
+}
+
+.org-src-container pre {
+    border-radius:4px;
+}

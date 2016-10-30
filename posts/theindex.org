@@ -1,0 +1,132 @@
+#+TITLE: About
+
+#+INCLUDE: "theindex.inc"
+
+#+BEGIN_HTML
+<img class="ui small image"
+     src="static/gadfly.png">
+
+<p>
+  Hello, my name is Matthew Jaoudi, <strong>@gadfly361</strong>.  This
+  is my blog, and it was built with
+  <a href="http://bastibe.de/2013-11-13-blogging-with-emacs.html">
+    org-mode
+  </a>
+  .  I could tell you about
+  myself, but that seems so ... <em>impersonal</em>. I'd rather just
+  share some of my tools with you.
+</p>
+
+<div class="ui list">
+
+  <div class="item">
+    <div class="ui label">Operating System</div>
+    <a href="https://www.linuxmint.com/edition.php?id=217">
+      linux mint</a>
+  </div>
+
+  <div class="item">
+    <div class="ui label">Windows Manager</div>
+    <a href="https://i3wm.org/">
+      i3</a>
+  </div>
+
+  <div class="item">
+    <div class="ui label">Editor</div>
+    <a href="https://www.gnu.org/software/emacs/">
+      emacs</a>
+  </div>
+
+  <div class="item">
+    <div class="ui label">Chrome Extensions</div>
+    <a href="https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en">
+      vimium</a>
+    ,
+    <a href="https://chrome.google.com/webstore/detail/flickr-tab/bhnpmdabjgpimmnbmhefncbghknfegog?hl=en">
+      flickr-tab</a>
+  </div>  
+
+  <div class="item">
+    <div class="ui label">Language</div>
+    <a href="https://github.com/clojure/clojurescript">
+      clojurescript</a>
+  </div>
+
+  <div class="item">
+    <div class="ui label">User Interface Builder</div>
+    <a href="https://github.com/reagent-project/reagent">
+      reagent</a>
+  </div>
+
+  <div class="item">
+    <div class="ui label">Template</div>
+    <a href="https://github.com/gadfly361/reagent-figwheel">
+      reagent-figwheel</a>
+  </div>
+
+  <div class="item">
+    <div class="ui label">Visualizations</div>
+    <a href="https://d3js.org/">
+      d3</a>
+  </div>
+
+  <div class="item">
+    <div class="ui label">Interactive Programming</div>
+    <a href="https://github.com/clojure-emacs/cider">
+      CIDER</a>
+    ,
+    <a href="https://github.com/bhauman/lein-figwheel">
+      figwheel</a>
+  </div>
+
+
+  <div class="item">
+    <div class="ui label">Routing</div>
+    <a href="https://github.com/gf3/secretary">
+      secretary</a>
+  </div>
+
+  <div class="item">
+    <div class="ui label">AJAX</div>
+    <a href="https://github.com/JulianBirch/cljs-ajax">
+       cljs-ajax</a>
+  </div>
+
+  <div class="item">
+    <div class="ui label">CSS</div>
+    <a href="https://github.com/noprompt/garden">
+      garden</a>
+    ,
+    <a href="http://semantic-ui.com/">
+      semantic ui</a>
+    
+  </div>
+
+  <div class="item">
+    <div class="ui label">Peak at App State</div>
+    <a href="https://github.com/Odinodin/data-frisk-reagent">
+      data-frisk</a>
+  </div>
+
+  <div class="item">
+    <div class="ui label">Testing</div>
+    <a href="https://github.com/bensu/doo">
+      doo</a>
+  </div>
+
+  <div class="item">
+    <div class="ui label">Documentation</div>
+    <a href="https://github.com/bhauman/devcards">
+      devcards</a>
+    ,
+    <a href="http://orgmode.org/"
+       target="_blank">
+      org-mode</a>
+  </div>
+
+
+  <div class="ui hidden divider">
+  </div>
+
+</div>
+#+END_HTML
