@@ -86,7 +86,7 @@ sudo apt-get install -y git
 To verify that you have git installed.
 
 #+BEGIN_SRC shell
-node --version
+git --version
 #+END_SRC
 
 *** Step 5: Install Node
