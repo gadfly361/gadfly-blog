@@ -14,8 +14,8 @@
   <link>https://gadfly361.github.io/gadfly-blog/</link>
   <description><![CDATA[]]></description>
   <language>en</language>
-  <pubDate>Sun, 30 Oct 2016 01:29:07 -0700</pubDate>
-  <lastBuildDate>Sun, 30 Oct 2016 01:29:07 -0700</lastBuildDate>
+  <pubDate>Sun, 13 Nov 2016 17:35:56 -0800</pubDate>
+  <lastBuildDate>Sun, 13 Nov 2016 17:35:56 -0800</lastBuildDate>
   <generator>Emacs 24.5 Org-mode 8.3.6</generator>
   <webMaster>matthew@gadfly (matthew)</webMaster>
   <image>
@@ -584,6 +584,574 @@
     </div>
     </div>
     ]]></description>
+</item>
+<item>
+  <title>clean-install-of-ubuntu-to-re-natal</title>
+  <link>https://gadfly361.github.io/gadfly-blog/2016-10-22-d3-in-reagent.html</link>
+  <author>matthew@gadfly (matthew)</author>
+  <guid isPermaLink="false">https://gadfly361.github.io/gadfly-blog/2016-10-22-d3-in-reagent.html</guid>
+  <pubDate>Sat, 22 Oct 2016 00:00:00 -0700</pubDate>
+
+  <description><![CDATA[<p>
+  Published: <i>November 13, 2016</i>
+  </p>
+
+  <div id="outline-container-orgheadline2" class="outline-3">
+  <h3 id="orgheadline2">Intro</h3>
+  <div class="outline-text-3" id="text-orgheadline2">
+  <p>
+  <b>Goal</b>: Share how to set up <a href="https://github.com/drapanjanas/re-natal">re-natal</a> v0.3.x (i.e., cljs + reagent +
+  re-frame + figwheel + react-native) on Ubuntu 16.04 LTS for android
+  application development.
+  </p>
+
+  <p>
+  Requirements:
+  </p>
+
+  <ul class="org-ul">
+  <li>Clean install of Ubuntu 16.04 (<b>not</b> in a VM)</li>
+  <li>25 GB of disk space (with everything installed, I used 21.8 GB of disk space)</li>
+  <li>16 GB of RAM (with everything running, I used 8.4 GB of RAM)</li>
+  </ul>
+
+  <p>
+  Special Note:
+  </p>
+
+  <p>
+  Please consider this post a living document. If updates/corrections
+  need to be made, please submit a PR against <a href="https://github.com/gadfly361/gadfly-blog/blob/master/posts/2016-11-13-clean-install-of-ubuntu-to-re-natal.org">this file</a>.
+  </p>
+  </div>
+  </div>
+
+  <div id="outline-container-orgheadline24" class="outline-3">
+  <h3 id="orgheadline24">Post</h3>
+  <div class="outline-text-3" id="text-orgheadline24">
+  </div><div id="outline-container-orgheadline3" class="outline-4">
+  <h4 id="orgheadline3">Step 1: Install Chrome</h4>
+  <div class="outline-text-4" id="text-orgheadline3">
+  <p>
+  Get the debian package.
+  </p>
+
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  </code></pre>
+  </div>
+
+  <p>
+  And install it.
+  </p>
+
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">sudo dpkg -i --force-depends google-chrome-stable_current_amd64.deb
+  sudo apt-get install -f -y
+  rm google-chrome-stable_current_amd64.deb
+  </code></pre>
+  </div>
+
+  <p>
+  To verify that you have chrome installed.
+  </p>
+
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">google-chrome --version
+  </code></pre>
+  </div>
+
+  <p>
+  Should produce something like: <code>Google Chrome 53.0.2785.116</code>. To see
+  chrome in your launcher, you may have to log out and log back in
+  again.
+  </p>
+  </div>
+  </div>
+
+  <div id="outline-container-orgheadline4" class="outline-4">
+  <h4 id="orgheadline4">Step 2: Install Java</h4>
+  <div class="outline-text-4" id="text-orgheadline4">
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">sudo apt-get install -y openjdk-8-jdk
+  </code></pre>
+  </div>
+
+  <p>
+  To verify that you have java installed.
+  </p>
+
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">java -version
+  </code></pre>
+  </div>
+  </div>
+  </div>
+
+  <div id="outline-container-orgheadline5" class="outline-4">
+  <h4 id="orgheadline5">Step 3: Install Leiningen</h4>
+  <div class="outline-text-4" id="text-orgheadline5">
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">wget https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
+  chmod a+x lein
+  sudo mv lein /usr/local/bin/
+  lein
+  </code></pre>
+  </div>
+
+  <p>
+  To verify that you have lein installed.
+  </p>
+
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">lein -v
+  </code></pre>
+  </div>
+  </div>
+  </div>
+
+  <div id="outline-container-orgheadline6" class="outline-4">
+  <h4 id="orgheadline6">Step 4: Install Git</h4>
+  <div class="outline-text-4" id="text-orgheadline6">
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">sudo apt-get install -y git
+  </code></pre>
+  </div>
+
+  <p>
+  To verify that you have git installed.
+  </p>
+
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">node --version
+  </code></pre>
+  </div>
+  </div>
+  </div>
+
+  <div id="outline-container-orgheadline7" class="outline-4">
+  <h4 id="orgheadline7">Step 5: Install Node</h4>
+  <div class="outline-text-4" id="text-orgheadline7">
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+  sudo apt-get install -y nodejs
+  </code></pre>
+  </div>
+
+  <p>
+  To verify that you have node installed.
+  </p>
+
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">node -v
+  </code></pre>
+  </div>
+  </div>
+  </div>
+
+  <div id="outline-container-orgheadline8" class="outline-4">
+  <h4 id="orgheadline8">Step 6: Install React Native</h4>
+  <div class="outline-text-4" id="text-orgheadline8">
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">sudo npm install -g react-native-cli
+  </code></pre>
+  </div>
+  </div>
+  </div>
+
+  <div id="outline-container-orgheadline9" class="outline-4">
+  <h4 id="orgheadline9">Step 7: Install Re-natal</h4>
+  <div class="outline-text-4" id="text-orgheadline9">
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">sudo npm install -g re-natal
+  </code></pre>
+  </div>
+  </div>
+  </div>
+
+  <div id="outline-container-orgheadline10" class="outline-4">
+  <h4 id="orgheadline10">Step 8: Install Watchman</h4>
+  <div class="outline-text-4" id="text-orgheadline10">
+  <p>
+  Prerequisites.
+  </p>
+
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">sudo apt-get install -y automake
+  sudo apt-get install -y python-dev
+  </code></pre>
+  </div>
+
+  <p>
+  Install watchman.
+  </p>
+
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">git clone https://github.com/facebook/watchman.git
+  cd watchman
+  git checkout v4.1.0  # the latest stable release
+  ./autogen.sh
+  ./configure
+  make
+  sudo make install
+  </code></pre>
+  </div>
+
+  <p>
+  Post install.
+  </p>
+
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">echo 256 | sudo tee -a /proc/sys/fs/inotify/max_user_instances
+  echo 32768 | sudo tee -a /proc/sys/fs/inotify/max_queued_events
+  echo 65536 | sudo tee -a /proc/sys/fs/inotify/max_user_watches
+  watchman shutdown-server
+  </code></pre>
+  </div>
+
+  <p>
+  To verify that you have watchman installed.
+  </p>
+
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">watchman -v
+  </code></pre>
+  </div>
+  </div>
+  </div>
+
+  <div id="outline-container-orgheadline11" class="outline-4">
+  <h4 id="orgheadline11">Step 9: Download android studio</h4>
+  <div class="outline-text-4" id="text-orgheadline11">
+  <p>
+  Download some 32 bit stuff.
+  </p>
+
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">sudo apt-get install -y libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1
+  </code></pre>
+  </div>
+
+  <p>
+  Download android studio <a href="https://developer.android.com/studio/index.html">here</a>, and unzip it. Note, your version may vary.
+  </p>
+
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">unzip android-studio-ide-145.3360264-linux.zip
+  </code></pre>
+  </div>
+
+  <p>
+  Run android studio:
+  </p>
+
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">cd android-studio/bin/ &amp;&amp; ./studio.sh
+  </code></pre>
+  </div>
+
+  <p>
+  Select <code>I do not have a previous version of Studio or I do not want to
+  import my settings.</code> and then click <code>Ok</code>.
+  </p>
+
+  <p>
+  A welcome page will appear, click <code>Next</code>.
+  </p>
+
+  <p>
+  For install type, choose <code>Standard</code>, then click <code>Next</code> until you get
+  to <code>Finish</code> and click that. A bunch of things will get installed, then
+  click <code>Finish</code> again.
+  </p>
+
+  <hr  />
+
+  <p>
+  At this point, you should see the standard welcome screen when you
+  launch Android Studio. At the bottom, click <code>configure</code>, then click <code>SDK Manager</code>. It should
+  open with <code>Andorid SDK</code> highlighted in the left bar. In the bottom
+  right, select <code>Show Package Details</code>. Select the following additional
+  options under <b>Android 6.0 (Marshmallow)</b>:
+  </p>
+
+  <ul class="org-ul">
+  <li>Google APIs</li>
+  <li>Android SDK Platform 23</li>
+  <li>Sources for Android 23</li>
+  <li>Intel x86 Atom System Image</li>
+  <li>Intel x86 Atom<sub>64</sub> System Image</li>
+  <li>Google APIs Intel x86 Atom System Image</li>
+  <li>Google APIs Intel x86 Atom<sub>64</sub> System Image</li>
+  </ul>
+
+
+  <p>
+  Go to SDK Tools tab and select <code>Show Package Details</code>.  Under <code>Android
+  SDK Build-Tools</code>, select version 23.01.
+  </p>
+
+  <p>
+  Click <code>Apply</code>, confirm the change to install, accept the license
+  agreements, then click <code>Finish</code>. You can now close android studio.
+  </p>
+
+
+  <p>
+  Add the following lines to <code>~/.bashrc</code>.
+  </p>
+
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">echo export ANDROID_HOME=~/Android/Sdk
+  echo export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+  </code></pre>
+  </div>
+
+  <p>
+  Source your .bashrc file.
+  </p>
+
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">source ~/.bashrc
+  </code></pre>
+  </div>
+  </div>
+  </div>
+
+  <div id="outline-container-orgheadline12" class="outline-4">
+  <h4 id="orgheadline12">Step 10: Install Virtualbox</h4>
+  <div class="outline-text-4" id="text-orgheadline12">
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">sudo apt-get install -y virtualbox
+  </code></pre>
+  </div>
+  </div>
+  </div>
+
+  <div id="outline-container-orgheadline13" class="outline-4">
+  <h4 id="orgheadline13">Step 11: Install Genymotion</h4>
+  <div class="outline-text-4" id="text-orgheadline13">
+  <p>
+  Go <a href="https://www.genymotion.com/">here</a> and create a Genymotion account. Sign in, click the <code>Download</code>
+  link in the top banner, and then click the <code>Download for Ubuntu
+  (64bit) button</code>.
+  </p>
+
+  <p>
+  Make the file executable. Note, your version may vary.
+  </p>
+
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">chmod +x genymotion-2.8.0-linux_x64.bin
+  </code></pre>
+  </div>
+
+  <p>
+  Run the file.
+  </p>
+
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">./genymotion-2.8.0-linux_x64.bin
+  </code></pre>
+  </div>
+
+  <p>
+  When prompted, type <code>y</code> to install to the current directory or <code>n</code> to
+  install somewhere else.
+  </p>
+
+  <p>
+  cd into the genymotion directory that was created, and start up
+  genymotion.
+  </p>
+
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">cd genymotion
+  ./genymotion
+  </code></pre>
+  </div>
+
+  <p>
+  You will be prompted to create your first virtual device, click <code>yes</code>.
+  Next, click the <code>Sign In</code> link at the bottom right.
+  </p>
+
+  <p>
+  After signing in, select <code>Samsung Galaxy S6 - 6.0.0 - API 23 -
+  1440x2560</code> and create the virtual device. Click <code>Finish</code>.
+  </p>
+
+  <p>
+  You should return to a list of your devices.
+  </p>
+
+  <p>
+  Go to <code>Settings</code>, click on the <code>ADB</code> tab. Select 'Use custom Android SDK tools' and enter the path of your Android SDK, which should be something like <code>/home/&lt;username&gt;/Android/Sdk</code>.
+  </p>
+  </div>
+  </div>
+
+  <div id="outline-container-orgheadline23" class="outline-4">
+  <h4 id="orgheadline23">Step 12: Create and run your first app</h4>
+  <div class="outline-text-4" id="text-orgheadline23">
+  </div><ul class="org-ul"><li><a id="orgheadline14"></a>Create an app from the re-natal template.<br  /><div class="outline-text-5" id="text-orgheadline14">
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">re-natal init FutureApp
+  cd future-app
+  </code></pre>
+  </div>
+  </div></li>
+
+  <li><a id="orgheadline15"></a>Start Genymotion (if it isn't already running)<br  /><div class="outline-text-5" id="text-orgheadline15">
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">./genymotion
+  </code></pre>
+  </div>
+  </div></li>
+
+  <li><a id="orgheadline16"></a>Start a simulated android device<br  /><div class="outline-text-5" id="text-orgheadline16">
+  <p>
+  In Genymotion, select the device you made earlier and hit <code>Start</code>.
+  </p>
+  </div></li>
+
+  <li><a id="orgheadline17"></a>Prepare the app<br  /><div class="outline-text-5" id="text-orgheadline17">
+  <p>
+  In another terminal:
+  </p>
+
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">re-natal use-android-device genymotion
+  re-natal use-figwheel
+  </code></pre>
+  </div>
+  </div></li>
+
+  <li><a id="orgheadline18"></a>Start figwheel<br  /><div class="outline-text-5" id="text-orgheadline18">
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">lein figwheel android
+  </code></pre>
+  </div>
+  </div></li>
+
+  <li><a id="orgheadline19"></a>Start react-native<br  /><div class="outline-text-5" id="text-orgheadline19">
+  <p>
+  In another terminal:
+  </p>
+
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">react-native start
+  </code></pre>
+  </div>
+  </div></li>
+
+  <li><a id="orgheadline20"></a>Run the app<br  /><div class="outline-text-5" id="text-orgheadline20">
+  <p>
+  In yet another terminal:
+  </p>
+
+  <div class="org-src-container">
+
+  <pre><code class="hljs shell">react-native run-android
+  </code></pre>
+  </div>
+  </div></li>
+
+  <li><a id="orgheadline21"></a>Verify the figwheel REPL is connected to the simulated app<br  /><div class="outline-text-5" id="text-orgheadline21">
+  <p>
+  In the figwheel REPL type:
+  </p>
+
+  <div class="org-src-container">
+
+  <pre><code class="hljs clojure">(js/alert "Hello, world!")
+  </code></pre>
+  </div>
+
+  <p>
+  You should see an alert pop-up in the simulated app.
+  </p>
+  </div></li>
+
+  <li><a id="orgheadline22"></a>Verify that you can debug remotely in a browser<br  /><div class="outline-text-5" id="text-orgheadline22">
+  <p>
+  In the simulated app, press <code>Ctrl + M</code>. Select <code>enable debug
+  remotely</code>, which should take you to <code>localhost:8081/debugger-ui</code>. Once
+  there press <code>Ctrl + Shift + J</code>, this should open the developer's
+  console.  In the figwheel REPL, type:
+  </p>
+
+  <div class="org-src-container">
+
+  <pre><code class="hljs clojure">(js/console.log "Hello, console!")
+  </code></pre>
+  </div>
+
+  <p>
+  You should see the message printed to the developer's console.
+  </p>
+  </div></li></ul>
+  </div>
+  </div>
+
+  <div id="outline-container-orgheadline25" class="outline-3">
+  <h3 id="orgheadline25">Thanks for Reading</h3>
+  <div class="outline-text-3" id="text-orgheadline25">
+  <p>
+  If you have any questions, I can be reached in the #reagent channel of
+  the <a href="http://clojurians.net/">clojurians</a> slack group.
+  </p>
+
+  <p>
+  Special Note:
+  </p>
+
+  <p>
+  Please consider this post a living document. If updates/corrections
+  need to be made, please submit a PR against <a href="https://github.com/gadfly361/gadfly-blog/blob/master/posts/2016-11-13-clean-install-of-ubuntu-to-re-natal.org">this file</a>.
+  </p>
+
+  - gadfly361 
+  <a href="https://twitter.com/gadfly361">
+  <i class="twitter icon black large"></i>
+  </a>
+  <a href="https://github.com/gadfly361">
+  <i class="github icon black large"></i>
+  </a>
+  </div>
+  </div>
+  ]]></description>
 </item>
 </channel>
 </rss>

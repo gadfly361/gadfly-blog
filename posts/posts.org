@@ -1,3 +1,4 @@
 #+TITLE: Posts
 
+   + [[file:2016-11-13-clean-install-of-ubuntu-to-re-natal.org][Clean Install of Ubuntu to Re-natal]]
    + [[file:2016-10-22-d3-in-reagent.org][d3 in reagent]]

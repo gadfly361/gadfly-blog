@@ -18,6 +18,10 @@ h2 {
     margin-top: 24px !important;
 }
 
+p {
+    margin-bottom: 12px !important;
+}
+
 .ui.menu .item {
     padding-left:8px !important;
     padding-right:8px !important;
