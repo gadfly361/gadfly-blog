@@ -5,6 +5,8 @@
 
 Published: /November 13, 2016/
 
+Updated: /November 14, 2016/
+
 ** Intro
 
 *Goal*: Share how to set up [[https://github.com/drapanjanas/re-natal][re-natal]] v0.3.x (i.e., cljs + reagent +
@@ -206,8 +208,8 @@ agreements, then click =Finish=. You can now close android studio.
 Add the following lines to =~/.bashrc=.
 
 #+BEGIN_SRC shell
-echo export ANDROID_HOME=~/Android/Sdk
-echo export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+export ANDROID_HOME=~/Android/Sdk
+export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 #+END_SRC
 
 Source your .bashrc file.

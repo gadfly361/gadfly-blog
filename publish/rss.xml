@@ -14,8 +14,8 @@
   <link>https://gadfly361.github.io/gadfly-blog/</link>
   <description><![CDATA[]]></description>
   <language>en</language>
-  <pubDate>Sun, 13 Nov 2016 18:02:16 -0800</pubDate>
-  <lastBuildDate>Sun, 13 Nov 2016 18:02:16 -0800</lastBuildDate>
+  <pubDate>Mon, 14 Nov 2016 08:09:31 -0800</pubDate>
+  <lastBuildDate>Mon, 14 Nov 2016 08:09:31 -0800</lastBuildDate>
   <generator>Emacs 24.5 Org-mode 8.3.6</generator>
   <webMaster>matthew@gadfly (matthew)</webMaster>
   <image>
@@ -596,6 +596,10 @@
   Published: <i>November 13, 2016</i>
   </p>
 
+  <p>
+  Updated: <i>November 14, 2016</i>
+  </p>
+
   <div id="outline-container-orgheadline2" class="outline-3">
   <h3 id="orgheadline2">Intro</h3>
   <div class="outline-text-3" id="text-orgheadline2">
@@ -732,7 +736,7 @@
 
   <div class="org-src-container">
 
-  <pre><code class="hljs shell">node --version
+  <pre><code class="hljs shell">git --version
   </code></pre>
   </div>
   </div>
@@ -923,8 +927,8 @@
 
   <div class="org-src-container">
 
-  <pre><code class="hljs shell">echo export ANDROID_HOME=~/Android/Sdk
-  echo export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+  <pre><code class="hljs shell">export ANDROID_HOME=~/Android/Sdk
+  export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
   </code></pre>
   </div>
 
