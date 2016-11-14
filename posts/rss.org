@@ -7,8 +7,8 @@
 #+include: "~/gadfly/blog/posts/2016-10-22-d3-in-reagent.org" :lines "4-"
 * clean-install-of-ubuntu-to-re-natal
 :PROPERTIES:
-:RSS_PERMALINK: 2016-10-22-d3-in-reagent.html
-:PUBDATE: <2016-10-22>
-:ID:       c9cbfa1b-2ab7-4991-bf30-ed639d816ba1
+:RSS_PERMALINK: 2016-11-13-clean-install-of-ubuntu-to-re-natal.html
+:PUBDATE: <2016-11-13>
+:ID:       aff4c2bb-eb5c-4415-a704-0bd1c7701698
 :END:
 #+include: "~/gadfly/blog/posts/2016-11-13-clean-install-of-ubuntu-to-re-natal.org" :lines "4-"
