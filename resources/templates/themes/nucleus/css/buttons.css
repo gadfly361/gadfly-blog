@@ -1,0 +1,50 @@
+.button {
+    position: relative;
+    display: inline-block;
+    padding: 7px 12px;
+    margin: 0;
+    width: auto;
+    font-family: "Montserrat";
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 400;
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+    text-align: left;
+    letter-spacing: 2px;
+}
+
+.button.fullbutton {
+    width: 100%;
+}
+
+.button.fullbutton span {
+    float: right;
+}
+
+.button:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+}
+
+/** Colours **/
+
+.button {
+    background: none;
+    border: 2px solid #21BA45;
+    color: #21BA45 !important;
+}
+
+.button:hover {
+    background: #21BA45;
+    color: #FFF !important;
+}
+
+.button:active {
+    top: 2px;
+}
+
+

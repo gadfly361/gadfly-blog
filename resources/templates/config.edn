@@ -1,0 +1,32 @@
+{:site-title           "Gadfly's Blog"
+ :author               "Matthew Jaoudi"
+ :description          "I know that I know nothing"
+ :site-url             "https://gadfly361.github.io/gadfly-blog/"
+ :post-root            "posts"
+ :page-root            "pages"
+ :post-root-uri        "posts-output"
+ :page-root-uri        "pages-output"
+ :tag-root-uri         "tags-output"
+ :author-root-uri      "authors-output"
+ :blog-prefix          ""
+ :rss-name             "feed.xml"
+ :rss-filters          ["clojurescript" "reagent" "gadfly" "gadfly361"]
+ :recent-posts         3
+ :post-date-format     "yyyy-MM-dd"
+ :archive-group-format "yyyy MMMM"
+ :sass-src             []
+ :sass-path            "sass"
+ :compass-path         "compass"
+ :theme                "nucleus"
+ :resources            ["img"]
+ :keep-files           [".git"]
+ :disqus?              true
+ :disqus-shortname     "gadfly-blog"
+ :ignored-files        [#"\.#.*" #".*\.swp$"]
+ :posts-per-page       5
+ :blocks-per-preview   2
+ :previews?            true
+ :clean-urls?          true
+ :hide-future-posts?   true
+ :klipse               {}
+ :debug?               false}
