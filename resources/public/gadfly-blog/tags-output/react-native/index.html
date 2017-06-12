@@ -7,7 +7,7 @@
     <!-- Website Template designed by www.downloadwebsitetemplates.co.uk -->
     <!-- Modified to fit Cryogen.-->
     <meta charset="UTF-8">
-    <title>{{title}}{% block subtitle %}{% endblock %}</title>
+    <title>Gadfly&#39;s Blog: Posts Tagged &quot;react-native&quot;</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -34,11 +34,10 @@
     <meta name="msapplication-square310x310logo" content="/gadfly-blog/img/ico/mstile-310x310.png" />
     
     <!--[if IE]><![endif]-->
-    {% style "/css/buttons.css"
-    {% style "/css/menu.css" %}
-    {% style "/css/reset.css" %}
-    {% style "/css/style.css" %}
-    {% style "/css/typography.css" %}
+    <link href="/gadfly-blog//css/buttons.css" rel="stylesheet" type="text/css" />
+    <link href="/gadfly-blog//css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="/gadfly-blog//css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/gadfly-blog//css/typography.css" rel="stylesheet" type="text/css" />
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/tomorrow-night-eighties.min.css">
     <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -48,7 +47,7 @@
 <div id="left">
 
     <p id="logo">
-        <a title="{{title}}" href="{{index-uri}}">
+        <a title="Gadfly&#39;s Blog" href="/gadfly-blog/">
           <!-- <span class="fa fa-rocket"></span> -->
 	  <img src="/gadfly-blog/img/gadfly.png" height="100px"/>
             <span class="text">Gadfly's Blog</span>
@@ -60,17 +59,17 @@
             <p><span class="fa fa-reorder"></span><strong>Menu</strong></p>
         </div>
         <ul class="menu">
-            <li {% if home %} class="active" {% endif %}><a title="Home" href="{{index-uri}}">Home</a></li>
-            <li {% if archives %} class="active" {% endif %}><a title="Archives" href="{{archives-uri}}">Archives</a></li>
-            {% if tags|not-empty %}
-            <li {%ifequal uri tags-uri %} class="active" {% endifequal %}><a title="Tags" href="{{tags-uri}}">Tags</a></li>
-            {% endif %}
-            {% for nav-page in navbar-pages %}
-            <li {%ifequal page.uri nav-page.uri %} class="active" {% endifequal %}>
-                <a href="{{nav-page.uri}}">{{nav-page.title}}</a>
+            <li ><a title="Home" href="/gadfly-blog/">Home</a></li>
+            <li ><a title="Archives" href="/gadfly-blog/archives/">Archives</a></li>
+            
+            <li ><a title="Tags" href="/gadfly-blog/tags/">Tags</a></li>
+            
+            
+            <li >
+                <a href="/gadfly-blog/pages-output/about/">About</a>
             </li>
-            {% endfor %}
-            <li><a title="RSS" href="{{rss-uri}}">RSS</a></li>
+            
+            <li><a title="RSS" href="/gadfly-blog/feed.xml">RSS</a></li>
         </ul>
     </div>
 
@@ -84,19 +83,31 @@
 </div>
 
 <div id="right" class="clearfix">
-    {% block content %}
-    {% endblock %}
+    
+<div id="posts-by-tag">
+    <div id="page-header">
+        <h1>Posts Tagged &quot;react-native&quot;</h1>
+    </div>
+    <ul>
+    
+        <li>
+            <a href="/gadfly-blog/posts-output/2016-11-13-clean-install-of-ubuntu-to-re-natal/">From a Clean Install of Ubuntu to Re-natal</a>
+        </li>
+    
+    </ul>
+</div>
+
 <hr/>
-<div id="footercont" class="clearfix">Copyright &copy; {{today|date:yyyy}} {{author}}
+<div id="footercont" class="clearfix">Copyright &copy; 2017 Matthew Jaoudi
     <p>Powered by <a href="http://cryogenweb.org">Cryogen</a> | Free Website Template by <a title="free website templates" href="http://www.downloadwebsitetemplates.co.uk" rel="external">Download Website Templates</a></p>
 
 </div>
 </div>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-{% script "js/highlight.pack.js" %}
+<script src="/gadfly-blog/js/highlight.pack.js" type="text/javascript"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-{% script "js/scripts.js" %}
-{% if post.klipse %} {{post.klipse|safe}} {% endif %}
-{% if page.klipse %} {{page.klipse|safe}} {% endif %}
+<script src="/gadfly-blog/js/scripts.js" type="text/javascript"></script>
+
+
 </body>
 </html>

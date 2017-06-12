@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"><![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+<head>
+    <!-- Website Template designed by www.downloadwebsitetemplates.co.uk -->
+    <!-- Modified to fit Cryogen.-->
+    <meta charset="UTF-8">
+    <title>Gadfly&#39;s Blog: D3 in Reagent</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/gadfly-blog/img/ico/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/gadfly-blog/img/ico/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/gadfly-blog/img/ico/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/gadfly-blog/img/ico/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/gadfly-blog/img/ico/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/gadfly-blog/img/ico/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/gadfly-blog/img/ico/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/gadfly-blog/img/ico/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/gadfly-blog/img/ico/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/gadfly-blog/img/ico/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/gadfly-blog/img/ico/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/gadfly-blog/img/ico/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/gadfly-blog/img/ico/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Gadfly's Blog"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/gadfly-blog/img/ico/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/gadfly-blog/img/ico/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/gadfly-blog/img/ico/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/gadfly-blog/img/ico/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/gadfly-blog/img/ico/mstile-310x310.png" />
+    
+    <!--[if IE]><![endif]-->
+    <link href="/gadfly-blog//css/buttons.css" rel="stylesheet" type="text/css" />
+    <link href="/gadfly-blog//css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="/gadfly-blog//css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/gadfly-blog//css/typography.css" rel="stylesheet" type="text/css" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/tomorrow-night-eighties.min.css">
+    <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+
+<div id="left">
+
+    <p id="logo">
+        <a title="Gadfly&#39;s Blog" href="/gadfly-blog/">
+          <!-- <span class="fa fa-rocket"></span> -->
+	  <img src="/gadfly-blog/img/gadfly.png" height="100px"/>
+            <span class="text">Gadfly's Blog</span>
+        </a>
+    </p>
+
+    <div id="menucont" class="bodycontainer clearfix">
+        <div class="menutitle">
+            <p><span class="fa fa-reorder"></span><strong>Menu</strong></p>
+        </div>
+        <ul class="menu">
+            <li ><a title="Home" href="/gadfly-blog/">Home</a></li>
+            <li ><a title="Archives" href="/gadfly-blog/archives/">Archives</a></li>
+            
+            <li ><a title="Tags" href="/gadfly-blog/tags/">Tags</a></li>
+            
+            
+            <li >
+                <a href="/gadfly-blog/pages-output/about/">About</a>
+            </li>
+            
+            <li><a title="RSS" href="/gadfly-blog/feed.xml">RSS</a></li>
+        </ul>
+    </div>
+
+    <div id="socialmedia" class="clearfix">
+        <ul>
+            <li><a title="GitHub" href="https://github.com/gadfly361" rel="external"><span class="fa fa-github"></span></a></li>
+            <li><a title="Stack Overflow" href="https://twitter.com/gadfly361" rel="external"><span class="fa fa-twitter"></span></a></li>
+        </ul>
+    </div>
+
+</div>
+
+<div id="right" class="clearfix">
+    
+<div id="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <strong>October 22, 2016</strong>
+        
+    </div>
+    <h1>D3 in Reagent</h1>
+</div>
+<div>
+    <ol class="content"><li><a href="#&lt;strong&gt;step_1&lt;/strong&gt;_create_application"> Create application</a></li><li><a href="#&lt;strong&gt;step_2&lt;/strong&gt;_add_d3_dependency_to_your_project"> Add d3 dependency to your project</a></li><li><a href="#&lt;strong&gt;step_3&lt;/strong&gt;_create_svg_element"> Create SVG element</a></li><li><a href="#&lt;strong&gt;step_4&lt;/strong&gt;_make_height_and_width_dynamic"> Make height and width dynamic</a></li><li><a href="#&lt;strong&gt;step_5&lt;/strong&gt;_create_a_containing_&apos;g&apos;_element"> Create a containing 'g' element</a></li><li><a href="#&lt;strong&gt;step_6&lt;/strong&gt;_add_bars"> Add bars</a></li><li><a href="#&lt;strong&gt;step_7&lt;/strong&gt;_make_bars_dynamic"> Make bars dynamic</a></li><li><a href="#thanks_for_reading">Thanks for Reading</a></li></ol>
+    <p><strong>Goal</strong>: Share an example of a dynamic barchart that showcases how to use d3's <a href='https://bl.ocks.org/mbostock/3808218'>General Update Pattern</a> with reagent's <a href='https://github.com/Day8/re-frame/wiki/Creating-Reagent-Components#form-3-a-class-with-life-cycle-methods'>form-3</a> component. Note, detailing how to use d3 itself is <strong>not</strong> a goal.</p><ul><li><a href='https://d3js.org'>d3</a> is an amazing visualization library written in javascript.</li><li><a href='https://github.com/reagent-project/reagent'>Reagent</a> is a clojurescript wrapper around facebook's <a href='https://facebook.github.io/react/'>react</a>.</li></ul><p><strong>Intended Audience</strong>: Intermediate clojurescript / d3 developers.</p><p><strong><a href='https://gadfly361.github.io/gadfly-blog/demos/2016-10-22-d3-in-reagent/index.html'>Demo</a></strong>, <strong><a href='https://github.com/gadfly361/gadfly-blog/tree/master/code/2016-10-22-d3-in-reagent'>Source</a></strong></p><p>For this post, we are going to start with <a href='https://github.com/gadfly361/reagent-cookbook-template'>reagent-cookbook-template</a>, which is useful for demonstration purposes. However, it is <strong>not</strong> a good template for development (I'd recommend <a href='https://github.com/gadfly361/reagent-figwheel'>reagent-figwheel</a> or <a href='https://github.com/Day8/re-frame-template'>re-frame-template</a> instead).</p><h2 id="<strong>step&#95;1</strong>&#95;create&#95;application"><strong>Step 1</strong> Create application</h2><pre><code>lein new rc d3-in-reagent</code></pre><p>You should see an output like this:</p><pre><code>├── project.clj
+├── resources
+│   └── public
+│       └── index.html
+└── src
+    └── cljs
+	└── d3&#95;in&#95;reagent
+	    └── core.cljs</code></pre><h2 id="<strong>step&#95;2</strong>&#95;add&#95;d3&#95;dependency&#95;to&#95;your&#95;project"><strong>Step 2</strong> Add d3 dependency to your project</h2><p>There are <a href='https://github.com/lambdaisland/thirdpartyjs'>several ways</a> to add d3 to your project; we are going to use <a href='https://github.com/cljsjs/packages'>cljsjs</a>. Open <code>project.clj</code> and add d3 to the dependencies vector.</p><pre><code>:dependencies &#91;&#91;org.clojure/clojure &quot;1.7.0&quot;&#93;
+	       &#91;org.clojure/clojurescript &quot;1.7.122&quot;&#93;
+	       &#91;reagent &quot;0.5.1&quot;&#93;
+	       &#91;cljsjs/d3 &quot;4.2.2-0&quot;&#93; ;; &lt;-- ATTENTION
+	       &#93;</code></pre><p>Open <code>core.cljs</code> and require d3.</p><pre><code>&#40;ns d3-in-reagent.core
+  &#40;:require
+   &#91;reagent.core :as reagent&#93;
+   &#91;cljsjs.d3&#93; ;; &lt;-- ATTENTION
+   &#41;&#41;</code></pre><h2 id="<strong>step&#95;3</strong>&#95;create&#95;svg&#95;element"><strong>Step 3</strong> Create SVG element</h2><p>To make our barchart, we need to put an SVG element on our page.</p><pre><code>&#40;defn viz &#91;&#93;
+  &#91;:div
+   {:id &quot;barchart&quot;}
+
+   &#91;:svg
+    {:width  300
+     :height 240}&#93;&#93;&#41;
+
+
+&#40;defn home &#91;&#93;
+  &#91;:div
+   &#91;:h1 &quot;Barchart&quot;&#93;
+   &#91;viz&#93;&#93;&#41;</code></pre><p>At this point, run your application (<code>lein cljsbuild once prod</code>, and then open <code>resources/public/index.html</code>) to verify that you have an svg on the page. You should see:</p><pre><code>&lt;svg width=&quot;300&quot; height=&quot;240&quot; data-reactid=&quot;.0.1.0&quot;&gt;&lt;/svg&gt;</code></pre><h2 id="<strong>step&#95;4</strong>&#95;make&#95;height&#95;and&#95;width&#95;dynamic"><strong>Step 4</strong> Make height and width dynamic</h2><p>However, I do not like the statically defined height and width. From experience, I have found that creating functions to generate the height and width works well for making responsive visualizations.</p><pre><code>&#40;defonce app-state
+  &#40;reagent/atom
+   {:width 300}&#41;&#41;
+
+
+&#40;defn get-width &#91;ratom&#93;
+  &#40;:width @ratom&#41;&#41;
+
+&#40;defn get-height &#91;ratom&#93;
+  &#40;let &#91;width &#40;get-width ratom&#41;&#93;
+    &#40;&#42; 0.8 width&#41;&#41;&#41;
+
+
+&#40;defn viz &#91;ratom&#93;
+  &#40;let &#91;width  &#40;get-width ratom&#41;
+	height &#40;get-height ratom&#41;&#93;
+    &#91;:div
+     {:id &quot;barchart&quot;}
+
+     &#91;:svg
+      {:width  width
+       :height height}&#93;&#93;&#41;&#41;</code></pre><p>We can test this out by creating a toggle-width button.</p><pre><code>&#40;defn btn-toggle-width &#91;ratom&#93;
+  &#91;:div
+   &#91;:button
+    {:on-click #&#40;swap! ratom update
+		       :width &#40;fn &#91;width&#93;
+				&#40;if &#40;= 300 width&#41; 500 300&#41;&#41;&#41;}
+    &quot;Toggle width&quot;&#93;&#93;&#41;
+
+&#40;defn home &#91;&#93;
+  &#91;:div
+   &#91;:h1 &quot;Barchart&quot;&#93;
+   &#91;btn-toggle-width app-state&#93;
+   &#91;viz app-state&#93;
+   &#93;&#41;</code></pre><p>If you click the button, the svg should toggle between:</p><pre><code>&lt;svg width=&quot;300&quot; height=&quot;240&quot; data-reactid=&quot;.0.2.0&quot;&gt;&lt;/svg&gt;</code></pre><pre><code>&lt;svg width=&quot;500&quot; height=&quot;400&quot; data-reactid=&quot;.0.2.0&quot;&gt;&lt;/svg&gt;</code></pre><h2 id="<strong>step&#95;5</strong>&#95;create&#95;a&#95;containing&#95;'g'&#95;element"><strong>Step 5</strong> Create a containing 'g' element</h2><p>Now that we have a dynamically sized svg element, let's add stuff to it! To start, we can add a simple <code>g</code> element to act as a container for other svg elements.</p><pre><code>svg
+└── g.container</code></pre><p><strong>Pause</strong></p><p>Ok, I lied. It isn't going to be all that simple. If you haven't done so, familiarize yourself with d3's <a href='https://bl.ocks.org/mbostock/3808218'>General Update Pattern</a> and reagent's <a href='https://github.com/Day8/re-frame/wiki/Creating-Reagent-Components#form-3-a-class-with-life-cycle-methods'>form-3</a> component.</p><p>From the d3 world, we care about:</p><ul><li><code>enter -&gt; update -&gt; exit</code></li></ul><p>From the reagent/react world, we care about:</p><ul><li><code>reagent-render -&gt; component-did-mount -&gt; component-did-update</code></li></ul><p>Since we are working with two different worlds, I recommend enforcing a strict naming convention:</p><ul><li>d3 world: &#42;-enter, &#42;-update, &#42;-exit</li><li>reagent/react world: &#42;-render, &#42;-did-mount, &#42;-did-update</li></ul><pre><code>&#40;defn container-enter &#91;ratom&#93;
+  &#40;-&gt; &#40;js/d3.select &quot;#barchart svg&quot;&#41;
+      &#40;.append &quot;g&quot;&#41;
+      &#40;.attr &quot;class&quot; &quot;container&quot;&#41;&#41;&#41;
+
+&#40;defn container-did-mount &#91;ratom&#93;
+  &#40;container-enter ratom&#41;&#41;</code></pre><pre><code>&#40;defn viz-render &#91;ratom&#93;
+  &#40;let &#91;width  &#40;get-width ratom&#41;
+	height &#40;get-height ratom&#41;&#93;
+    &#91;:div
+     {:id &quot;barchart&quot;}
+
+     &#91;:svg
+      {:width  width
+       :height height}&#93;&#93;&#41;&#41;
+
+&#40;defn viz-did-mount &#91;ratom&#93;
+  &#40;container-did-mount ratom&#41;&#41;
+
+&#40;defn viz &#91;ratom&#93;
+  &#40;reagent/create-class
+   {:reagent-render      #&#40;viz-render ratom&#41;
+    :component-did-mount #&#40;viz-did-mount ratom&#41;}&#41;&#41;</code></pre><p>Let's recap the order of events between d3 and reagent.</p><ol><li><code>viz</code> component calls its render function, <code>viz-render</code><ul><li>places svg element on the DOM</li></ul></li><li><code>viz</code> component calls its did-mount function, <code>viz-did-mount</code><ul><li><code>viz-did-mount</code> calls <code>container-did-mount</code></li><li><code>container-did-mount</code> calls <code>container-enter</code></li><li><code>container-enter</code> grabs the svg element and appends a <code>g</code> element.</li></ul></li></ol><h2 id="<strong>step&#95;6</strong>&#95;add&#95;bars"><strong>Step 6</strong> Add bars</h2><p>Let's add some data that we can use to generate the bars in our chart.</p><pre><code>&#40;defonce app-state
+  &#40;reagent/atom
+   {:width 300
+    :data  &#91;{:x 1}
+	    {:x 2}
+	    {:x 3}&#93;}&#41;&#41;
+
+&#40;defn get-data &#91;ratom&#93;
+  &#40;:data @ratom&#41;&#41;</code></pre><p>Next, let's add the bars to our svg with the previously discussed naming convention. By the end, our svg structure will look like this.</p><pre><code>svg
+└── g.container
+    └── g.bars
+	└── rect
+	└── rect
+	└── rect</code></pre><p>*Note: Since this is not a d3 tutorial, I am making the assumption that the d3 bits below make sense.*</p><pre><code>&#40;defn bars-enter &#91;ratom&#93;
+  &#40;let &#91;data &#40;get-data ratom&#41;&#93;
+    &#40;-&gt; &#40;js/d3.select &quot;#barchart svg .container .bars&quot;&#41;
+	&#40;.selectAll &quot;rect&quot;&#41;
+	&#40;.data &#40;clj-&gt;js data&#41;&#41;
+	.enter
+	&#40;.append &quot;rect&quot;&#41;&#41;&#41;&#41;
+
+&#40;defn bars-update &#91;ratom&#93;
+  &#40;let &#91;width   &#40;get-width ratom&#41;
+	height  &#40;get-height ratom&#41;
+	data    &#40;get-data ratom&#41;
+	data-n  &#40;count data&#41;
+	rect-height &#40;/ height data-n&#41;
+	x-scale &#40;-&gt; js/d3
+		    .scaleLinear
+		    &#40;.domain #js &#91;0 5&#93;&#41;
+		    &#40;.range #js &#91;0 width&#93;&#41;&#41;&#93;
+    &#40;-&gt; &#40;js/d3.select &quot;#barchart svg .container .bars&quot;&#41;
+	&#40;.selectAll &quot;rect&quot;&#41;
+	&#40;.data &#40;clj-&gt;js data&#41;&#41;
+	&#40;.attr &quot;fill&quot; &quot;green&quot;&#41;
+	&#40;.attr &quot;x&quot; &#40;x-scale 0&#41;&#41;
+	&#40;.attr &quot;y&quot; &#40;fn &#91;&#95; i&#93;
+		     &#40;&#42; i rect-height&#41;&#41;&#41;
+	&#40;.attr &quot;height&quot; &#40;- rect-height 1&#41;&#41;
+	&#40;.attr &quot;width&quot; &#40;fn &#91;d&#93;
+			 &#40;x-scale &#40;aget d &quot;x&quot;&#41;&#41;&#41;&#41;&#41;&#41;&#41;
+
+&#40;defn bars-exit &#91;ratom&#93;
+  &#40;let &#91;data &#40;get-data ratom&#41;&#93;
+    &#40;-&gt; &#40;js/d3.select &quot;#barchart svg .container .bars&quot;&#41;
+	&#40;.selectAll &quot;rect&quot;&#41;
+	&#40;.data &#40;clj-&gt;js data&#41;&#41;
+	.exit
+	.remove&#41;&#41;&#41;
+
+
+&#40;defn bars-did-update &#91;ratom&#93;
+  &#40;bars-enter ratom&#41;
+  &#40;bars-update ratom&#41;
+  &#40;bars-exit ratom&#41;&#41;
+
+&#40;defn bars-did-mount &#91;ratom&#93;
+  &#40;-&gt; &#40;js/d3.select &quot;#barchart svg .container&quot;&#41;
+      &#40;.append &quot;g&quot;&#41;
+      &#40;.attr &quot;class&quot; &quot;bars&quot;&#41;&#41;
+  &#40;bars-did-update ratom&#41;&#41;</code></pre><p>Hopefully, at this point the separation of the d3 world, and the reagent/react world is clear.</p><p>d3 world:</p><ul><li>bars-enter</li><li>bars-update</li><li>bars-exit</li></ul><p>reagent/react world:</p><ul><li>bars-did-update</li><li>bars-did-mount</li></ul><p>It should be noted that <code>bars-did-update</code> and <code>bars-did-mount</code> are <em>almost</em> the same. However, the difference is important to understand. <code>bars-did-mount</code> will only ever be called once, right after the component has mounted. <code>bars-did-update</code> will be called on every subsequent render of our component.  If we had placed the following:</p><pre><code>&#40;-&gt; &#40;js/d3.select &quot;#barchart svg .container&quot;&#41;
+    &#40;.append &quot;g&quot;&#41;
+    &#40;.attr &quot;class&quot; &quot;bars&quot;&#41;&#41;</code></pre><p>inside of <code>bars-did-update</code>, we would have created a <strong>new</strong> <code>g</code> element every time the component updated &#x2026; eek!</p><p>Now we can add the bars to our svg, as follows.</p><pre><code>&#40;defn viz-did-mount &#91;ratom&#93;
+  ;; order matters here
+  &#40;container-did-mount ratom&#41;
+  &#40;bars-did-mount ratom&#41;&#41;
+
+&#40;defn viz-did-update &#91;ratom&#93;
+  &#40;bars-did-update ratom&#41;&#41;
+
+&#40;defn viz &#91;ratom&#93;
+  &#40;reagent/create-class
+   {:reagent-render       #&#40;viz-render ratom&#41;
+    :component-did-mount  #&#40;viz-did-mount ratom&#41;
+    :component-did-update #&#40;viz-did-update ratom&#41;}&#41;&#41;</code></pre><h2 id="<strong>step&#95;7</strong>&#95;make&#95;bars&#95;dynamic"><strong>Step 7</strong> Make bars dynamic</h2><p>We have actually already written the code to make the bars dynamic! However, to see it, let's add a button that will create random data.</p><pre><code>&#40;defn randomize-data &#91;ratom&#93;
+  &#40;let &#91;points-n &#40;max 2 &#40;rand-int 8&#41;&#41;
+	points   &#40;range points-n&#41;
+	create-x &#40;fn &#91;&#93; &#40;max 1 &#40;rand-int 5&#41;&#41;&#41;&#93;
+    &#40;swap! ratom update :data
+	   &#40;fn &#91;&#93;
+	     &#40;mapv #&#40;hash-map :x &#40;create-x&#41;&#41;
+		   points&#41;&#41;&#41;&#41;&#41;
+
+&#40;defn btn-randomize-data &#91;ratom&#93;
+  &#91;:div
+   &#91;:button
+    {:on-click #&#40;randomize-data ratom&#41;}
+    &quot;Randomize data&quot;&#93;&#93;&#41;</code></pre><pre><code>&#40;defn home &#91;&#93;
+  &#91;:div
+   &#91;:h1 &quot;Barchart&quot;&#93;
+   &#91;btn-toggle-width app-state&#93;
+   &#91;btn-randomize-data app-state&#93;
+   &#91;viz app-state&#93;
+   &#93;&#41;</code></pre><h2 id="thanks&#95;for&#95;reading">Thanks for Reading</h2><p><strong><a href='https://gadfly361.github.io/gadfly-blog/demos/2016-10-22-d3-in-reagent/index.html'>Demo</a></strong>, <strong><a href='https://github.com/gadfly361/gadfly-blog/tree/master/code/2016-10-22-d3-in-reagent'>Source</a></strong></p><p>If you have any questions, I can be reached in the #reagent channel of the <a href='http://clojurians.net/'>clojurians</a> slack group.</p><p>Cheers, gadfly361</p>
+</div>
+
+<div id="post-tags">
+    <br/> 
+    <b>Tags: </b>
+    
+    <a href="/gadfly-blog/tags-output/d3/">d3</a>
+    
+    <a href="/gadfly-blog/tags-output/reagent/">reagent</a>
+    
+    <a href="/gadfly-blog/tags-output/clojurescript/">clojurescript</a>
+    
+</div>
+
+<br/>
+
+    <div id="prev-next">
+        
+        <a class="button" href="/gadfly-blog/posts-output/2016-11-13-clean-install-of-ubuntu-to-re-natal/">&laquo; From a Clean Install of Ubuntu to Re-natal</a>
+        
+        
+    </div>
+
+    
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_config = function () {
+            this.page.url = "https://gadfly361.github.io/gadfly-blog/gadfly-blog/posts-output/2016-10-22-d3-in-reagent/";
+            this.page.identifier = "D3 in Reagent";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gadfly-blog.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    
+
+
+</div>
+
+<hr/>
+<div id="footercont" class="clearfix">Copyright &copy; 2017 Matthew Jaoudi
+    <p>Powered by <a href="http://cryogenweb.org">Cryogen</a> | Free Website Template by <a title="free website templates" href="http://www.downloadwebsitetemplates.co.uk" rel="external">Download Website Templates</a></p>
+
+</div>
+</div>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="/gadfly-blog/js/highlight.pack.js" type="text/javascript"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="/gadfly-blog/js/scripts.js" type="text/javascript"></script>
+ <link rel="stylesheet" type="text/css" href=nil>
+<script>
+window.klipse_settings = null;
+</script>
+<script src=nil></script> 
+
+</body>
+</html>
