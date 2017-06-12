@@ -21,7 +21,7 @@
  :resources            ["img" "demos"]
  :keep-files           [".git"]
  :disqus?              true
- :disqus-shortname     "gadfly361-blog"
+ :disqus-shortname     "gadfly-blog"
  :ignored-files        [#"\.#.*" #".*\.swp$"]
  :posts-per-page       5
  :blocks-per-preview   2
