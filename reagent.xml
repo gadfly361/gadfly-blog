@@ -1,0 +1,252 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rss version='2.0' xmlns:atom='http://www.w3.org/2005/Atom'>
+<channel>
+<atom:link href='https://gadfly361.github.io/gadfly-blog/' rel='self' type='application/rss+xml'/>
+<title>
+Gadfly's Blog
+</title>
+<link>
+https://gadfly361.github.io/gadfly-blog/
+</link>
+<description>
+I know that I know nothing
+</description>
+<lastBuildDate>
+Mon, 12 Jun 2017 12:34:23 -0700
+</lastBuildDate>
+<generator>
+clj-rss
+</generator>
+<item>
+<guid>
+https://gadfly361.github.io/gadfly-blog/gadfly-blog/posts-output/2016-11-13-clean-install-of-ubuntu-to-re-natal/
+</guid>
+<link>
+https://gadfly361.github.io/gadfly-blog/gadfly-blog/posts-output/2016-11-13-clean-install-of-ubuntu-to-re-natal/
+</link>
+<title>
+From a Clean Install of Ubuntu to Re-natal
+</title>
+<description>
+&lt;p&gt;Updated: &lt;em&gt;November 14, 2016&lt;/em&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Goal&lt;/strong&gt;: Share how to set up &lt;a href='https://github.com/drapanjanas/re-natal'&gt;re-natal&lt;/a&gt; v0.3.x (i.e., cljs + reagent + re-frame + figwheel + react-native) on Ubuntu 16.04 LTS for android application development.&lt;/p&gt;&lt;p&gt;Requirements:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Clean install of Ubuntu 16.04 (&lt;strong&gt;not&lt;/strong&gt; in a VM)&lt;/li&gt;&lt;li&gt;25 GB of disk space (with everything installed, I used 21.8 GB of disk space)&lt;/li&gt;&lt;li&gt;16 GB of RAM (with everything running, I used 8.4 GB of RAM)&lt;/li&gt;&lt;/ul&gt;&lt;h2 id=&quot;&lt;strong&gt;step&amp;#95;1&lt;/strong&gt;&amp;#95;install&amp;#95;chrome&quot;&gt;&lt;strong&gt;Step 1&lt;/strong&gt; Install Chrome&lt;/h2&gt;&lt;p&gt;Get the debian package.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;wget https://dl.google.com/linux/direct/google-chrome-stable&amp;#95;current&amp;#95;amd64.deb&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And install it.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;sudo dpkg -i --force-depends google-chrome-stable&amp;#95;current&amp;#95;amd64.deb
+sudo apt-get install -f -y
+rm google-chrome-stable&amp;#95;current&amp;#95;amd64.deb&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To verify that you have chrome installed.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;google-chrome --version&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Should produce something like: &lt;code&gt;Google Chrome 53.0.2785.116&lt;/code&gt;. To see chrome in your launcher, you may have to log out and log back in again.&lt;/p&gt;&lt;h2 id=&quot;&lt;strong&gt;step&amp;#95;2&lt;/strong&gt;&amp;#95;install&amp;#95;java&quot;&gt;&lt;strong&gt;Step 2&lt;/strong&gt; Install Java&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;sudo apt-get install -y openjdk-8-jdk&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To verify that you have java installed.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;java -version&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;&lt;strong&gt;step&amp;#95;3&lt;/strong&gt;&amp;#95;install&amp;#95;leiningen&quot;&gt;&lt;strong&gt;Step 3&lt;/strong&gt; Install Leiningen&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;wget https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
+chmod a+x lein
+sudo mv lein /usr/local/bin/
+lein&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To verify that you have lein installed.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;lein -v&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;&lt;strong&gt;step&amp;#95;4&lt;/strong&gt;&amp;#95;install&amp;#95;git&quot;&gt;&lt;strong&gt;Step 4&lt;/strong&gt; Install Git&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;sudo apt-get install -y git&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To verify that you have git installed.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;git --version&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;&lt;strong&gt;step&amp;#95;5&lt;/strong&gt;&amp;#95;install&amp;#95;node&quot;&gt;&lt;strong&gt;Step 5&lt;/strong&gt; Install Node&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;curl -sL https://deb.nodesource.com/setup&amp;#95;4.x | sudo -E bash -
+sudo apt-get install -y nodejs&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To verify that you have node installed.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;node -v&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;&lt;strong&gt;step&amp;#95;6&lt;/strong&gt;&amp;#95;install&amp;#95;react&amp;#95;native&quot;&gt;&lt;strong&gt;Step 6&lt;/strong&gt; Install React Native&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;sudo npm install -g react-native-cli&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;&lt;strong&gt;step&amp;#95;7&lt;/strong&gt;&amp;#95;install&amp;#95;re-natal&quot;&gt;&lt;strong&gt;Step 7&lt;/strong&gt; Install Re-natal&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;sudo npm install -g re-natal&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;&lt;strong&gt;step&amp;#95;8&lt;/strong&gt;&amp;#95;install&amp;#95;watchman&quot;&gt;&lt;strong&gt;Step 8&lt;/strong&gt; Install Watchman&lt;/h2&gt;&lt;p&gt;Prerequisites.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;sudo apt-get install -y automake
+sudo apt-get install -y python-dev&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Install watchman.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;git clone https://github.com/facebook/watchman.git
+cd watchman
+git checkout v4.1.0  # the latest stable release
+./autogen.sh
+./configure
+make
+sudo make install&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Post install.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;echo 256 | sudo tee -a /proc/sys/fs/inotify/max&amp;#95;user&amp;#95;instances
+echo 32768 | sudo tee -a /proc/sys/fs/inotify/max&amp;#95;queued&amp;#95;events
+echo 65536 | sudo tee -a /proc/sys/fs/inotify/max&amp;#95;user&amp;#95;watches
+watchman shutdown-server&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To verify that you have watchman installed.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;watchman -v&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;&lt;strong&gt;step&amp;#95;9&lt;/strong&gt;&amp;#95;download&amp;#95;android&amp;#95;studio&quot;&gt;&lt;strong&gt;Step 9&lt;/strong&gt; Download android studio&lt;/h2&gt;&lt;p&gt;Download some 32 bit stuff.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;sudo apt-get install -y libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Download android studio &lt;a href='https://developer.android.com/studio/index.html'&gt;here&lt;/a&gt;, and unzip it. Note, your version may vary.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;unzip android-studio-ide-145.3360264-linux.zip&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Run android studio:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;cd android-studio/bin/ &amp;amp;&amp;amp; ./studio.sh&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Select `I do not have a previous version of Studio or I do not want to import my settings.&lt;code&gt; and then click &lt;/code&gt;Ok`.&lt;/p&gt;&lt;p&gt;A welcome page will appear, click &lt;code&gt;Next&lt;/code&gt;.&lt;/p&gt;&lt;p&gt;For install type, choose &lt;code&gt;Standard&lt;/code&gt;, then click &lt;code&gt;Next&lt;/code&gt; until you get to &lt;code&gt;Finish&lt;/code&gt; and click that. A bunch of things will get installed, then click &lt;code&gt;Finish&lt;/code&gt; again.&lt;h2&gt;&lt;/h2&gt;&lt;/p&gt;&lt;p&gt;At this point, you should see the standard welcome screen when you launch Android Studio. At the bottom, click &lt;code&gt;configure&lt;/code&gt;, then click &lt;code&gt;SDK Manager&lt;/code&gt;. It should open with &lt;code&gt;Andorid SDK&lt;/code&gt; highlighted in the left bar. In the bottom right, select &lt;code&gt;Show Package Details&lt;/code&gt;. Select the following additional options under &lt;strong&gt;Android 6.0 (Marshmallow)&lt;/strong&gt;:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Google APIs&lt;/li&gt;&lt;li&gt;Android SDK Platform 23&lt;/li&gt;&lt;li&gt;Sources for Android 23&lt;/li&gt;&lt;li&gt;Intel x86 Atom System Image&lt;/li&gt;&lt;li&gt;Intel x86 Atom&lt;sub&gt;64&lt;/sub&gt; System Image&lt;/li&gt;&lt;li&gt;Google APIs Intel x86 Atom System Image&lt;/li&gt;&lt;li&gt;Google APIs Intel x86 Atom&lt;sub&gt;64&lt;/sub&gt; System Image&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Go to SDK Tools tab and select &lt;code&gt;Show Package Details&lt;/code&gt;.  Under `Android SDK Build-Tools`, select version 23.01.&lt;/p&gt;&lt;p&gt;Click &lt;code&gt;Apply&lt;/code&gt;, confirm the change to install, accept the license agreements, then click &lt;code&gt;Finish&lt;/code&gt;. You can now close android studio.&lt;/p&gt;&lt;p&gt;Add the following lines to &lt;code&gt;&amp;#126;/.bashrc&lt;/code&gt;.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;export ANDROID&amp;#95;HOME=&amp;#126;/Android/Sdk
+export PATH=${PATH}:${ANDROID&amp;#95;HOME}/tools:${ANDROID&amp;#95;HOME}/platform-tools&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Source your .bashrc file.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;source &amp;#126;/.bashrc&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;&lt;strong&gt;step&amp;#95;10&lt;/strong&gt;&amp;#95;install&amp;#95;virtualbox&quot;&gt;&lt;strong&gt;Step 10&lt;/strong&gt; Install Virtualbox&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;sudo apt-get install -y virtualbox&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;&lt;strong&gt;step&amp;#95;11&lt;/strong&gt;&amp;#95;install&amp;#95;genymotion&quot;&gt;&lt;strong&gt;Step 11&lt;/strong&gt; Install Genymotion&lt;/h2&gt;&lt;p&gt;Go &lt;a href='https://www.genymotion.com/'&gt;here&lt;/a&gt; and create a Genymotion account. Sign in, click the &lt;code&gt;Download&lt;/code&gt; link in the top banner, and then click the `Download for Ubuntu (64bit) button`.&lt;/p&gt;&lt;p&gt;Make the file executable. Note, your version may vary.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;chmod +x genymotion-2.8.0-linux&amp;#95;x64.bin&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Run the file.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;./genymotion-2.8.0-linux&amp;#95;x64.bin&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;When prompted, type &lt;code&gt;y&lt;/code&gt; to install to the current directory or &lt;code&gt;n&lt;/code&gt; to install somewhere else.&lt;/p&gt;&lt;p&gt;cd into the genymotion directory that was created, and start up genymotion.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;cd genymotion
+./genymotion&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;You will be prompted to create your first virtual device, click &lt;code&gt;yes&lt;/code&gt;. Next, click the &lt;code&gt;Sign In&lt;/code&gt; link at the bottom right.&lt;/p&gt;&lt;p&gt;After signing in, select `Samsung Galaxy S6 - 6.0.0 - API 23 - 1440x2560&lt;code&gt; and create the virtual device. Click &lt;/code&gt;Finish`.&lt;/p&gt;&lt;p&gt;You should return to a list of your devices.&lt;/p&gt;&lt;p&gt;Go to &lt;code&gt;Settings&lt;/code&gt;, click on the &lt;code&gt;ADB&lt;/code&gt; tab. Select 'Use custom Android SDK tools' and enter the path of your Android SDK, which should be something like &lt;code&gt;/home/&amp;lt;username&amp;gt;/Android/Sdk&lt;/code&gt;.&lt;/p&gt;&lt;h2 id=&quot;&lt;strong&gt;step&amp;#95;12&lt;/strong&gt;&amp;#95;create&amp;#95;and&amp;#95;run&amp;#95;your&amp;#95;first&amp;#95;app&quot;&gt;&lt;strong&gt;Step 12&lt;/strong&gt; Create and run your first app&lt;/h2&gt;&lt;h3 id=&quot;create&amp;#95;an&amp;#95;app&amp;#95;from&amp;#95;the&amp;#95;re-natal&amp;#95;template.&quot;&gt;Create an app from the re-natal template.&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;re-natal init FutureApp
+cd future-app&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;start&amp;#95;genymotion&amp;#95;(if&amp;#95;it&amp;#95;isn't&amp;#95;already&amp;#95;running)&quot;&gt;Start Genymotion (if it isn't already running)&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;./genymotion&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;start&amp;#95;a&amp;#95;simulated&amp;#95;android&amp;#95;device&quot;&gt;Start a simulated android device&lt;/h3&gt;&lt;p&gt;In Genymotion, select the device you made earlier and hit &lt;code&gt;Start&lt;/code&gt;.&lt;/p&gt;&lt;h3 id=&quot;prepare&amp;#95;the&amp;#95;app&quot;&gt;Prepare the app&lt;/h3&gt;&lt;p&gt;In another terminal:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;re-natal use-android-device genymotion
+re-natal use-figwheel&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;start&amp;#95;figwheel&quot;&gt;Start figwheel&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;lein figwheel android&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;start&amp;#95;react-native&quot;&gt;Start react-native&lt;/h3&gt;&lt;p&gt;In another terminal:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;react-native start&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;run&amp;#95;the&amp;#95;app&quot;&gt;Run the app&lt;/h3&gt;&lt;p&gt;In yet another terminal:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;react-native run-android&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;verify&amp;#95;the&amp;#95;figwheel&amp;#95;repl&amp;#95;is&amp;#95;connected&amp;#95;to&amp;#95;the&amp;#95;simulated&amp;#95;app&quot;&gt;Verify the figwheel REPL is connected to the simulated app&lt;/h3&gt;&lt;p&gt;In the figwheel REPL type:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;&amp;#40;js/alert &amp;quot;Hello, world!&amp;quot;&amp;#41;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;You should see an alert pop-up in the simulated app.&lt;/p&gt;&lt;h3 id=&quot;verify&amp;#95;that&amp;#95;you&amp;#95;can&amp;#95;debug&amp;#95;remotely&amp;#95;in&amp;#95;a&amp;#95;browser&quot;&gt;Verify that you can debug remotely in a browser&lt;/h3&gt;&lt;p&gt;In the simulated app, press &lt;code&gt;Ctrl + M&lt;/code&gt;. Select `enable debug remotely&lt;code&gt;, which should take you to &lt;/code&gt;localhost:8081/debugger-ui`. Once there press &lt;code&gt;Ctrl + Shift + J&lt;/code&gt;, this should open the developer's console.  In the figwheel REPL, type:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;&amp;#40;js/console.log &amp;quot;Hello, console!&amp;quot;&amp;#41;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;You should see the message printed to the developer's console.&lt;/p&gt;&lt;h2 id=&quot;thanks&amp;#95;for&amp;#95;reading&quot;&gt;Thanks for Reading&lt;/h2&gt;&lt;p&gt;If you have any questions, I can be reached in the #reagent channel of the &lt;a href='http://clojurians.net/'&gt;clojurians&lt;/a&gt; slack group.&lt;/p&gt;&lt;p&gt;Cheers, gadfly361&lt;/p&gt;
+</description>
+<pubDate>
+Sun, 13 Nov 2016 00:00:00 -0800
+</pubDate>
+</item>
+<item>
+<guid>
+https://gadfly361.github.io/gadfly-blog/gadfly-blog/posts-output/2016-10-22-d3-in-reagent/
+</guid>
+<link>
+https://gadfly361.github.io/gadfly-blog/gadfly-blog/posts-output/2016-10-22-d3-in-reagent/
+</link>
+<title>
+D3 in Reagent
+</title>
+<description>
+&lt;p&gt;&lt;strong&gt;Goal&lt;/strong&gt;: Share an example of a dynamic barchart that showcases how to use d3's &lt;a href='https://bl.ocks.org/mbostock/3808218'&gt;General Update Pattern&lt;/a&gt; with reagent's &lt;a href='https://github.com/Day8/re-frame/wiki/Creating-Reagent-Components#form-3-a-class-with-life-cycle-methods'&gt;form-3&lt;/a&gt; component. Note, detailing how to use d3 itself is &lt;strong&gt;not&lt;/strong&gt; a goal.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;a href='https://d3js.org'&gt;d3&lt;/a&gt; is an amazing visualization library written in javascript.&lt;/li&gt;&lt;li&gt;&lt;a href='https://github.com/reagent-project/reagent'&gt;Reagent&lt;/a&gt; is a clojurescript wrapper around facebook's &lt;a href='https://facebook.github.io/react/'&gt;react&lt;/a&gt;.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;Intended Audience&lt;/strong&gt;: Intermediate clojurescript / d3 developers.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;&lt;a href='https://gadfly361.github.io/gadfly-blog/demos/2016-10-22-d3-in-reagent/index.html'&gt;Demo&lt;/a&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;a href='https://github.com/gadfly361/gadfly-blog/tree/master/code/2016-10-22-d3-in-reagent'&gt;Source&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;For this post, we are going to start with &lt;a href='https://github.com/gadfly361/reagent-cookbook-template'&gt;reagent-cookbook-template&lt;/a&gt;, which is useful for demonstration purposes. However, it is &lt;strong&gt;not&lt;/strong&gt; a good template for development (I'd recommend &lt;a href='https://github.com/gadfly361/reagent-figwheel'&gt;reagent-figwheel&lt;/a&gt; or &lt;a href='https://github.com/Day8/re-frame-template'&gt;re-frame-template&lt;/a&gt; instead).&lt;/p&gt;&lt;h2 id=&quot;&lt;strong&gt;step&amp;#95;1&lt;/strong&gt;&amp;#95;create&amp;#95;application&quot;&gt;&lt;strong&gt;Step 1&lt;/strong&gt; Create application&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;lein new rc d3-in-reagent&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;You should see an output like this:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;├── project.clj
+├── resources
+│   └── public
+│       └── index.html
+└── src
+    └── cljs
+	└── d3&amp;#95;in&amp;#95;reagent
+	    └── core.cljs&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;&lt;strong&gt;step&amp;#95;2&lt;/strong&gt;&amp;#95;add&amp;#95;d3&amp;#95;dependency&amp;#95;to&amp;#95;your&amp;#95;project&quot;&gt;&lt;strong&gt;Step 2&lt;/strong&gt; Add d3 dependency to your project&lt;/h2&gt;&lt;p&gt;There are &lt;a href='https://github.com/lambdaisland/thirdpartyjs'&gt;several ways&lt;/a&gt; to add d3 to your project; we are going to use &lt;a href='https://github.com/cljsjs/packages'&gt;cljsjs&lt;/a&gt;. Open &lt;code&gt;project.clj&lt;/code&gt; and add d3 to the dependencies vector.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;:dependencies &amp;#91;&amp;#91;org.clojure/clojure &amp;quot;1.7.0&amp;quot;&amp;#93;
+	       &amp;#91;org.clojure/clojurescript &amp;quot;1.7.122&amp;quot;&amp;#93;
+	       &amp;#91;reagent &amp;quot;0.5.1&amp;quot;&amp;#93;
+	       &amp;#91;cljsjs/d3 &amp;quot;4.2.2-0&amp;quot;&amp;#93; ;; &amp;lt;-- ATTENTION
+	       &amp;#93;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Open &lt;code&gt;core.cljs&lt;/code&gt; and require d3.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;&amp;#40;ns d3-in-reagent.core
+  &amp;#40;:require
+   &amp;#91;reagent.core :as reagent&amp;#93;
+   &amp;#91;cljsjs.d3&amp;#93; ;; &amp;lt;-- ATTENTION
+   &amp;#41;&amp;#41;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;&lt;strong&gt;step&amp;#95;3&lt;/strong&gt;&amp;#95;create&amp;#95;svg&amp;#95;element&quot;&gt;&lt;strong&gt;Step 3&lt;/strong&gt; Create SVG element&lt;/h2&gt;&lt;p&gt;To make our barchart, we need to put an SVG element on our page.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;&amp;#40;defn viz &amp;#91;&amp;#93;
+  &amp;#91;:div
+   {:id &amp;quot;barchart&amp;quot;}
+
+   &amp;#91;:svg
+    {:width  300
+     :height 240}&amp;#93;&amp;#93;&amp;#41;
+
+
+&amp;#40;defn home &amp;#91;&amp;#93;
+  &amp;#91;:div
+   &amp;#91;:h1 &amp;quot;Barchart&amp;quot;&amp;#93;
+   &amp;#91;viz&amp;#93;&amp;#93;&amp;#41;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;At this point, run your application (&lt;code&gt;lein cljsbuild once prod&lt;/code&gt;, and then open &lt;code&gt;resources/public/index.html&lt;/code&gt;) to verify that you have an svg on the page. You should see:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;&amp;lt;svg width=&amp;quot;300&amp;quot; height=&amp;quot;240&amp;quot; data-reactid=&amp;quot;.0.1.0&amp;quot;&amp;gt;&amp;lt;/svg&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;&lt;strong&gt;step&amp;#95;4&lt;/strong&gt;&amp;#95;make&amp;#95;height&amp;#95;and&amp;#95;width&amp;#95;dynamic&quot;&gt;&lt;strong&gt;Step 4&lt;/strong&gt; Make height and width dynamic&lt;/h2&gt;&lt;p&gt;However, I do not like the statically defined height and width. From experience, I have found that creating functions to generate the height and width works well for making responsive visualizations.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;&amp;#40;defonce app-state
+  &amp;#40;reagent/atom
+   {:width 300}&amp;#41;&amp;#41;
+
+
+&amp;#40;defn get-width &amp;#91;ratom&amp;#93;
+  &amp;#40;:width @ratom&amp;#41;&amp;#41;
+
+&amp;#40;defn get-height &amp;#91;ratom&amp;#93;
+  &amp;#40;let &amp;#91;width &amp;#40;get-width ratom&amp;#41;&amp;#93;
+    &amp;#40;&amp;#42; 0.8 width&amp;#41;&amp;#41;&amp;#41;
+
+
+&amp;#40;defn viz &amp;#91;ratom&amp;#93;
+  &amp;#40;let &amp;#91;width  &amp;#40;get-width ratom&amp;#41;
+	height &amp;#40;get-height ratom&amp;#41;&amp;#93;
+    &amp;#91;:div
+     {:id &amp;quot;barchart&amp;quot;}
+
+     &amp;#91;:svg
+      {:width  width
+       :height height}&amp;#93;&amp;#93;&amp;#41;&amp;#41;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;We can test this out by creating a toggle-width button.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;&amp;#40;defn btn-toggle-width &amp;#91;ratom&amp;#93;
+  &amp;#91;:div
+   &amp;#91;:button
+    {:on-click #&amp;#40;swap! ratom update
+		       :width &amp;#40;fn &amp;#91;width&amp;#93;
+				&amp;#40;if &amp;#40;= 300 width&amp;#41; 500 300&amp;#41;&amp;#41;&amp;#41;}
+    &amp;quot;Toggle width&amp;quot;&amp;#93;&amp;#93;&amp;#41;
+
+&amp;#40;defn home &amp;#91;&amp;#93;
+  &amp;#91;:div
+   &amp;#91;:h1 &amp;quot;Barchart&amp;quot;&amp;#93;
+   &amp;#91;btn-toggle-width app-state&amp;#93;
+   &amp;#91;viz app-state&amp;#93;
+   &amp;#93;&amp;#41;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;If you click the button, the svg should toggle between:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;&amp;lt;svg width=&amp;quot;300&amp;quot; height=&amp;quot;240&amp;quot; data-reactid=&amp;quot;.0.2.0&amp;quot;&amp;gt;&amp;lt;/svg&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code&gt;&amp;lt;svg width=&amp;quot;500&amp;quot; height=&amp;quot;400&amp;quot; data-reactid=&amp;quot;.0.2.0&amp;quot;&amp;gt;&amp;lt;/svg&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;&lt;strong&gt;step&amp;#95;5&lt;/strong&gt;&amp;#95;create&amp;#95;a&amp;#95;containing&amp;#95;'g'&amp;#95;element&quot;&gt;&lt;strong&gt;Step 5&lt;/strong&gt; Create a containing 'g' element&lt;/h2&gt;&lt;p&gt;Now that we have a dynamically sized svg element, let's add stuff to it! To start, we can add a simple &lt;code&gt;g&lt;/code&gt; element to act as a container for other svg elements.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;svg
+└── g.container&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Pause&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Ok, I lied. It isn't going to be all that simple. If you haven't done so, familiarize yourself with d3's &lt;a href='https://bl.ocks.org/mbostock/3808218'&gt;General Update Pattern&lt;/a&gt; and reagent's &lt;a href='https://github.com/Day8/re-frame/wiki/Creating-Reagent-Components#form-3-a-class-with-life-cycle-methods'&gt;form-3&lt;/a&gt; component.&lt;/p&gt;&lt;p&gt;From the d3 world, we care about:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;code&gt;enter -&amp;gt; update -&amp;gt; exit&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;From the reagent/react world, we care about:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;code&gt;reagent-render -&amp;gt; component-did-mount -&amp;gt; component-did-update&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Since we are working with two different worlds, I recommend enforcing a strict naming convention:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;d3 world: &amp;#42;-enter, &amp;#42;-update, &amp;#42;-exit&lt;/li&gt;&lt;li&gt;reagent/react world: &amp;#42;-render, &amp;#42;-did-mount, &amp;#42;-did-update&lt;/li&gt;&lt;/ul&gt;&lt;pre&gt;&lt;code&gt;&amp;#40;defn container-enter &amp;#91;ratom&amp;#93;
+  &amp;#40;-&amp;gt; &amp;#40;js/d3.select &amp;quot;#barchart svg&amp;quot;&amp;#41;
+      &amp;#40;.append &amp;quot;g&amp;quot;&amp;#41;
+      &amp;#40;.attr &amp;quot;class&amp;quot; &amp;quot;container&amp;quot;&amp;#41;&amp;#41;&amp;#41;
+
+&amp;#40;defn container-did-mount &amp;#91;ratom&amp;#93;
+  &amp;#40;container-enter ratom&amp;#41;&amp;#41;&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code&gt;&amp;#40;defn viz-render &amp;#91;ratom&amp;#93;
+  &amp;#40;let &amp;#91;width  &amp;#40;get-width ratom&amp;#41;
+	height &amp;#40;get-height ratom&amp;#41;&amp;#93;
+    &amp;#91;:div
+     {:id &amp;quot;barchart&amp;quot;}
+
+     &amp;#91;:svg
+      {:width  width
+       :height height}&amp;#93;&amp;#93;&amp;#41;&amp;#41;
+
+&amp;#40;defn viz-did-mount &amp;#91;ratom&amp;#93;
+  &amp;#40;container-did-mount ratom&amp;#41;&amp;#41;
+
+&amp;#40;defn viz &amp;#91;ratom&amp;#93;
+  &amp;#40;reagent/create-class
+   {:reagent-render      #&amp;#40;viz-render ratom&amp;#41;
+    :component-did-mount #&amp;#40;viz-did-mount ratom&amp;#41;}&amp;#41;&amp;#41;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Let's recap the order of events between d3 and reagent.&lt;/p&gt;&lt;ol&gt;&lt;li&gt;&lt;code&gt;viz&lt;/code&gt; component calls its render function, &lt;code&gt;viz-render&lt;/code&gt;&lt;ul&gt;&lt;li&gt;places svg element on the DOM&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;&lt;code&gt;viz&lt;/code&gt; component calls its did-mount function, &lt;code&gt;viz-did-mount&lt;/code&gt;&lt;ul&gt;&lt;li&gt;&lt;code&gt;viz-did-mount&lt;/code&gt; calls &lt;code&gt;container-did-mount&lt;/code&gt;&lt;/li&gt;&lt;li&gt;&lt;code&gt;container-did-mount&lt;/code&gt; calls &lt;code&gt;container-enter&lt;/code&gt;&lt;/li&gt;&lt;li&gt;&lt;code&gt;container-enter&lt;/code&gt; grabs the svg element and appends a &lt;code&gt;g&lt;/code&gt; element.&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ol&gt;&lt;h2 id=&quot;&lt;strong&gt;step&amp;#95;6&lt;/strong&gt;&amp;#95;add&amp;#95;bars&quot;&gt;&lt;strong&gt;Step 6&lt;/strong&gt; Add bars&lt;/h2&gt;&lt;p&gt;Let's add some data that we can use to generate the bars in our chart.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;&amp;#40;defonce app-state
+  &amp;#40;reagent/atom
+   {:width 300
+    :data  &amp;#91;{:x 1}
+	    {:x 2}
+	    {:x 3}&amp;#93;}&amp;#41;&amp;#41;
+
+&amp;#40;defn get-data &amp;#91;ratom&amp;#93;
+  &amp;#40;:data @ratom&amp;#41;&amp;#41;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Next, let's add the bars to our svg with the previously discussed naming convention. By the end, our svg structure will look like this.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;svg
+└── g.container
+    └── g.bars
+	└── rect
+	└── rect
+	└── rect&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;*Note: Since this is not a d3 tutorial, I am making the assumption that the d3 bits below make sense.*&lt;/p&gt;&lt;pre&gt;&lt;code&gt;&amp;#40;defn bars-enter &amp;#91;ratom&amp;#93;
+  &amp;#40;let &amp;#91;data &amp;#40;get-data ratom&amp;#41;&amp;#93;
+    &amp;#40;-&amp;gt; &amp;#40;js/d3.select &amp;quot;#barchart svg .container .bars&amp;quot;&amp;#41;
+	&amp;#40;.selectAll &amp;quot;rect&amp;quot;&amp;#41;
+	&amp;#40;.data &amp;#40;clj-&amp;gt;js data&amp;#41;&amp;#41;
+	.enter
+	&amp;#40;.append &amp;quot;rect&amp;quot;&amp;#41;&amp;#41;&amp;#41;&amp;#41;
+
+&amp;#40;defn bars-update &amp;#91;ratom&amp;#93;
+  &amp;#40;let &amp;#91;width   &amp;#40;get-width ratom&amp;#41;
+	height  &amp;#40;get-height ratom&amp;#41;
+	data    &amp;#40;get-data ratom&amp;#41;
+	data-n  &amp;#40;count data&amp;#41;
+	rect-height &amp;#40;/ height data-n&amp;#41;
+	x-scale &amp;#40;-&amp;gt; js/d3
+		    .scaleLinear
+		    &amp;#40;.domain #js &amp;#91;0 5&amp;#93;&amp;#41;
+		    &amp;#40;.range #js &amp;#91;0 width&amp;#93;&amp;#41;&amp;#41;&amp;#93;
+    &amp;#40;-&amp;gt; &amp;#40;js/d3.select &amp;quot;#barchart svg .container .bars&amp;quot;&amp;#41;
+	&amp;#40;.selectAll &amp;quot;rect&amp;quot;&amp;#41;
+	&amp;#40;.data &amp;#40;clj-&amp;gt;js data&amp;#41;&amp;#41;
+	&amp;#40;.attr &amp;quot;fill&amp;quot; &amp;quot;green&amp;quot;&amp;#41;
+	&amp;#40;.attr &amp;quot;x&amp;quot; &amp;#40;x-scale 0&amp;#41;&amp;#41;
+	&amp;#40;.attr &amp;quot;y&amp;quot; &amp;#40;fn &amp;#91;&amp;#95; i&amp;#93;
+		     &amp;#40;&amp;#42; i rect-height&amp;#41;&amp;#41;&amp;#41;
+	&amp;#40;.attr &amp;quot;height&amp;quot; &amp;#40;- rect-height 1&amp;#41;&amp;#41;
+	&amp;#40;.attr &amp;quot;width&amp;quot; &amp;#40;fn &amp;#91;d&amp;#93;
+			 &amp;#40;x-scale &amp;#40;aget d &amp;quot;x&amp;quot;&amp;#41;&amp;#41;&amp;#41;&amp;#41;&amp;#41;&amp;#41;&amp;#41;
+
+&amp;#40;defn bars-exit &amp;#91;ratom&amp;#93;
+  &amp;#40;let &amp;#91;data &amp;#40;get-data ratom&amp;#41;&amp;#93;
+    &amp;#40;-&amp;gt; &amp;#40;js/d3.select &amp;quot;#barchart svg .container .bars&amp;quot;&amp;#41;
+	&amp;#40;.selectAll &amp;quot;rect&amp;quot;&amp;#41;
+	&amp;#40;.data &amp;#40;clj-&amp;gt;js data&amp;#41;&amp;#41;
+	.exit
+	.remove&amp;#41;&amp;#41;&amp;#41;
+
+
+&amp;#40;defn bars-did-update &amp;#91;ratom&amp;#93;
+  &amp;#40;bars-enter ratom&amp;#41;
+  &amp;#40;bars-update ratom&amp;#41;
+  &amp;#40;bars-exit ratom&amp;#41;&amp;#41;
+
+&amp;#40;defn bars-did-mount &amp;#91;ratom&amp;#93;
+  &amp;#40;-&amp;gt; &amp;#40;js/d3.select &amp;quot;#barchart svg .container&amp;quot;&amp;#41;
+      &amp;#40;.append &amp;quot;g&amp;quot;&amp;#41;
+      &amp;#40;.attr &amp;quot;class&amp;quot; &amp;quot;bars&amp;quot;&amp;#41;&amp;#41;
+  &amp;#40;bars-did-update ratom&amp;#41;&amp;#41;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Hopefully, at this point the separation of the d3 world, and the reagent/react world is clear.&lt;/p&gt;&lt;p&gt;d3 world:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;bars-enter&lt;/li&gt;&lt;li&gt;bars-update&lt;/li&gt;&lt;li&gt;bars-exit&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;reagent/react world:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;bars-did-update&lt;/li&gt;&lt;li&gt;bars-did-mount&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;It should be noted that &lt;code&gt;bars-did-update&lt;/code&gt; and &lt;code&gt;bars-did-mount&lt;/code&gt; are &lt;em&gt;almost&lt;/em&gt; the same. However, the difference is important to understand. &lt;code&gt;bars-did-mount&lt;/code&gt; will only ever be called once, right after the component has mounted. &lt;code&gt;bars-did-update&lt;/code&gt; will be called on every subsequent render of our component.  If we had placed the following:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;&amp;#40;-&amp;gt; &amp;#40;js/d3.select &amp;quot;#barchart svg .container&amp;quot;&amp;#41;
+    &amp;#40;.append &amp;quot;g&amp;quot;&amp;#41;
+    &amp;#40;.attr &amp;quot;class&amp;quot; &amp;quot;bars&amp;quot;&amp;#41;&amp;#41;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;inside of &lt;code&gt;bars-did-update&lt;/code&gt;, we would have created a &lt;strong&gt;new&lt;/strong&gt; &lt;code&gt;g&lt;/code&gt; element every time the component updated &amp;#x2026; eek!&lt;/p&gt;&lt;p&gt;Now we can add the bars to our svg, as follows.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;&amp;#40;defn viz-did-mount &amp;#91;ratom&amp;#93;
+  ;; order matters here
+  &amp;#40;container-did-mount ratom&amp;#41;
+  &amp;#40;bars-did-mount ratom&amp;#41;&amp;#41;
+
+&amp;#40;defn viz-did-update &amp;#91;ratom&amp;#93;
+  &amp;#40;bars-did-update ratom&amp;#41;&amp;#41;
+
+&amp;#40;defn viz &amp;#91;ratom&amp;#93;
+  &amp;#40;reagent/create-class
+   {:reagent-render       #&amp;#40;viz-render ratom&amp;#41;
+    :component-did-mount  #&amp;#40;viz-did-mount ratom&amp;#41;
+    :component-did-update #&amp;#40;viz-did-update ratom&amp;#41;}&amp;#41;&amp;#41;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;&lt;strong&gt;step&amp;#95;7&lt;/strong&gt;&amp;#95;make&amp;#95;bars&amp;#95;dynamic&quot;&gt;&lt;strong&gt;Step 7&lt;/strong&gt; Make bars dynamic&lt;/h2&gt;&lt;p&gt;We have actually already written the code to make the bars dynamic! However, to see it, let's add a button that will create random data.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;&amp;#40;defn randomize-data &amp;#91;ratom&amp;#93;
+  &amp;#40;let &amp;#91;points-n &amp;#40;max 2 &amp;#40;rand-int 8&amp;#41;&amp;#41;
+	points   &amp;#40;range points-n&amp;#41;
+	create-x &amp;#40;fn &amp;#91;&amp;#93; &amp;#40;max 1 &amp;#40;rand-int 5&amp;#41;&amp;#41;&amp;#41;&amp;#93;
+    &amp;#40;swap! ratom update :data
+	   &amp;#40;fn &amp;#91;&amp;#93;
+	     &amp;#40;mapv #&amp;#40;hash-map :x &amp;#40;create-x&amp;#41;&amp;#41;
+		   points&amp;#41;&amp;#41;&amp;#41;&amp;#41;&amp;#41;
+
+&amp;#40;defn btn-randomize-data &amp;#91;ratom&amp;#93;
+  &amp;#91;:div
+   &amp;#91;:button
+    {:on-click #&amp;#40;randomize-data ratom&amp;#41;}
+    &amp;quot;Randomize data&amp;quot;&amp;#93;&amp;#93;&amp;#41;&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code&gt;&amp;#40;defn home &amp;#91;&amp;#93;
+  &amp;#91;:div
+   &amp;#91;:h1 &amp;quot;Barchart&amp;quot;&amp;#93;
+   &amp;#91;btn-toggle-width app-state&amp;#93;
+   &amp;#91;btn-randomize-data app-state&amp;#93;
+   &amp;#91;viz app-state&amp;#93;
+   &amp;#93;&amp;#41;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;thanks&amp;#95;for&amp;#95;reading&quot;&gt;Thanks for Reading&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;&lt;a href='https://gadfly361.github.io/gadfly-blog/demos/2016-10-22-d3-in-reagent/index.html'&gt;Demo&lt;/a&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;a href='https://github.com/gadfly361/gadfly-blog/tree/master/code/2016-10-22-d3-in-reagent'&gt;Source&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;If you have any questions, I can be reached in the #reagent channel of the &lt;a href='http://clojurians.net/'&gt;clojurians&lt;/a&gt; slack group.&lt;/p&gt;&lt;p&gt;Cheers, gadfly361&lt;/p&gt;
+</description>
+<pubDate>
+Sat, 22 Oct 2016 00:00:00 -0700
+</pubDate>
+</item>
+</channel>
+</rss>
