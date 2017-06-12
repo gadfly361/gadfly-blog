@@ -18,7 +18,7 @@
  :sass-path            "sass"
  :compass-path         "compass"
  :theme                "nucleus"
- :resources            ["img" "css"]
+ :resources            ["img"]
  :keep-files           [".git"]
  :disqus?              true
  :disqus-shortname     "gadfly-blog"
