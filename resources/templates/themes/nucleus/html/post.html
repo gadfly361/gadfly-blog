@@ -12,23 +12,26 @@
         {% endif %}
     </div>
 
-    {% if disqus-shortname %}
-    <div id="disqus_thread"></div>
-    <script type="text/javascript">
-      var disqus_config = function () {
-      this.page.url = "https://gadfly361.github.io{{uri}}";
-      this.page.identifier = "{{uri}}";
-      };
+    <!-- {% if disqus-shortname %} -->
+    <!-- <div id="disqus_thread"></div> -->
+    <!-- <script type="text/javascript"> -->
+    <!--   var disqus_config = function () { -->
+    <!--   this.page.url = "https://gadfly361.github.io{{uri}}"; -->
+    <!--   this.page.identifier = "{{uri}}"; -->
+    <!--   }; -->
 
-      (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://{{disqus-shortname}}.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-      })();
-    </script>
-    {% endif %}
+    <!--   (function() { -->
+    <!--   var d = document, s = d.createElement('script'); -->
+    <!--   s.src = 'https://{{disqus-shortname}}.disqus.com/embed.js'; -->
+    <!--   s.setAttribute('data-timestamp', +new Date()); -->
+    <!--   (d.head || d.body).appendChild(s); -->
+    <!--   })(); -->
+    <!-- </script> -->
+    <!-- {% endif %} -->
 
+    <hr>
+    <h2>Comments</h2>
+    <div id="gh-comments-list"></div>
 
 </div>
 {% endblock %}

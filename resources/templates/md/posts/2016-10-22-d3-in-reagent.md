@@ -1,7 +1,8 @@
 {:title "D3 in Reagent"
  :layout :post
  :tags  ["clojurescript" "reagent" "d3"]
- :toc true}
+ :toc true
+ :issue-id "3"}
 
 **Goal**: Share an example of a dynamic barchart that showcases how to
 use d3's [General Update Pattern](https://bl.ocks.org/mbostock/3808218) with reagent's [form-3](https://github.com/Day8/re-frame/wiki/Creating-Reagent-Components#form-3-a-class-with-life-cycle-methods) component. Note,

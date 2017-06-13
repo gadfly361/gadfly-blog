@@ -1,7 +1,8 @@
 {:title "From a Clean Install of Ubuntu to Re-natal"
  :layout :post
  :tags  ["clojurescript" "reagent" "react-native"]
- :toc true}
+ :toc true
+ :issue-id "2"}
 
 
 Updated: *November 14, 2016*
