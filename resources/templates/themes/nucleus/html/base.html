@@ -114,7 +114,7 @@ $(document).ready(function () {
         headers: {Accept: "application/vnd.github.v3.html+json"},
         dataType: "json",
         success: function(comments) {
-            $("#gh-comments-list").append("To comment on this post, pleasecomment on this <b><a href='" + url + "'>Github Issue</a></b>.");
+            $("#gh-comments-list").append("To comment on this post, please comment on this <b><a href='" + url + "'>Github Issue</a></b>.");
             $.each(comments, function(i, comment) {
 
                 var date = new Date(comment.created_at);
