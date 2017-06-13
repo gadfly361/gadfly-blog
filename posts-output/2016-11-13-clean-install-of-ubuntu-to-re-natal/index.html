@@ -138,23 +138,11 @@ re-natal use-figwheel</code></pre><h3 id="start&#95;figwheel">Start figwheel</h3
         
     </div>
 
-    
-    <div id="disqus_thread"></div>
-    <script type="text/javascript">
-      var disqus_config = function () {
-      this.page.url = "https://gadfly361.github.io/gadfly-blog/posts-output/2016-11-13-clean-install-of-ubuntu-to-re-natal/";
-      this.page.identifier = "/gadfly-blog/posts-output/2016-11-13-clean-install-of-ubuntu-to-re-natal/";
-      };
+    <!--  -->
 
-      (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://gadflys-blog.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-      })();
-    </script>
-    
-
+    <hr>
+    <h2>Comments</h2>
+    <div id="gh-comments-list"></div>
 
 </div>
 
@@ -173,6 +161,47 @@ re-natal use-figwheel</code></pre><h3 id="start&#95;figwheel">Start figwheel</h3
 window.klipse_settings = null;
 </script>
 <script src=nil></script> 
+
+
+
+
+    <!-- Github Comments -->
+    <!-- Snippet from: http://donw.io/post/github-comments/ -->
+
+    
+    <script>
+var url = "https://github.com/gadfly361/gadfly-blog/issues/" + 2
+var api_url = "https://api.github.com/repos/gadfly361/gadfly-blog/issues/" + 2 + "/comments"
+
+$(document).ready(function () {
+    $.ajax(api_url, {
+        headers: {Accept: "application/vnd.github.v3.html+json"},
+        dataType: "json",
+        success: function(comments) {
+            $("#gh-comments-list").append("To comment on this post, pleasecomment on this <b><a href='" + url + "'>Github Issue</a></b>.");
+            $.each(comments, function(i, comment) {
+
+                var date = new Date(comment.created_at);
+
+                var t = "<div id='gh-comment'>";
+		t += "<br>"
+                t += "<img src='" + comment.user.avatar_url + "' width='24px'>";
+                t += "<b><a href='" + comment.user.html_url + "'>" + comment.user.login + "</a></b>";
+                t += " posted at ";
+                t += "<em>" + date.toUTCString() + "</em>";
+                t += "<div id='gh-comment-hr'></div>";
+                t += comment.body_html;
+                t += "</div>";
+                $("#gh-comments-list").append(t);
+            });
+        },
+        error: function() {
+            $("#gh-comments-list").append("Comments are not open for this post yet.");
+        }
+    });
+});
+    </script>
+     
 
 </body>
 </html>
