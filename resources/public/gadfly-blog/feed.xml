@@ -1,28 +1,28 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <rss version='2.0' xmlns:atom='http://www.w3.org/2005/Atom'>
 <channel>
-<atom:link href='https://gadfly361.github.io/gadfly-blog/' rel='self' type='application/rss+xml'/>
+<atom:link href='https://gadfly361.github.io' rel='self' type='application/rss+xml'/>
 <title>
 Gadfly's Blog
 </title>
 <link>
-https://gadfly361.github.io/gadfly-blog/
+https://gadfly361.github.io
 </link>
 <description>
 I know that I know nothing
 </description>
 <lastBuildDate>
-Tue, 13 Jun 2017 12:14:31 -0700
+Tue, 13 Jun 2017 16:27:40 -0700
 </lastBuildDate>
 <generator>
 clj-rss
 </generator>
 <item>
 <guid>
-https://gadfly361.github.io/gadfly-blog/gadfly-blog/posts-output/2016-11-13-clean-install-of-ubuntu-to-re-natal/
+https://gadfly361.github.io/gadfly-blog/posts-output/2016-11-13-clean-install-of-ubuntu-to-re-natal/
 </guid>
 <link>
-https://gadfly361.github.io/gadfly-blog/gadfly-blog/posts-output/2016-11-13-clean-install-of-ubuntu-to-re-natal/
+https://gadfly361.github.io/gadfly-blog/posts-output/2016-11-13-clean-install-of-ubuntu-to-re-natal/
 </link>
 <title>
 From a Clean Install of Ubuntu to Re-natal
@@ -56,10 +56,10 @@ Sun, 13 Nov 2016 00:00:00 -0800
 </item>
 <item>
 <guid>
-https://gadfly361.github.io/gadfly-blog/gadfly-blog/posts-output/2016-10-22-d3-in-reagent/
+https://gadfly361.github.io/gadfly-blog/posts-output/2016-10-22-d3-in-reagent/
 </guid>
 <link>
-https://gadfly361.github.io/gadfly-blog/gadfly-blog/posts-output/2016-10-22-d3-in-reagent/
+https://gadfly361.github.io/gadfly-blog/posts-output/2016-10-22-d3-in-reagent/
 </link>
 <title>
 D3 in Reagent

@@ -1,7 +1,7 @@
 {:site-title           "Gadfly's Blog"
  :author               "Matthew Jaoudi"
  :description          "I know that I know nothing"
- :site-url             "https://gadfly361.github.io/gadfly-blog/"
+ :site-url             "https://gadfly361.github.io"
  :post-root            "posts"
  :page-root            "pages"
  :post-root-uri        "posts-output"
