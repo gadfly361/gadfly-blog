@@ -1,18 +1,18 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <rss version='2.0' xmlns:atom='http://www.w3.org/2005/Atom'>
 <channel>
-<atom:link href='https://gadfly361.github.io/gadfly-blog/' rel='self' type='application/rss+xml'/>
+<atom:link href='https://gadfly361.github.io' rel='self' type='application/rss+xml'/>
 <title>
 Gadfly's Blog
 </title>
 <link>
-https://gadfly361.github.io/gadfly-blog/
+https://gadfly361.github.io
 </link>
 <description>
 I know that I know nothing
 </description>
 <lastBuildDate>
-Tue, 13 Jun 2017 12:14:31 -0700
+Tue, 13 Jun 2017 16:27:40 -0700
 </lastBuildDate>
 <generator>
 clj-rss
